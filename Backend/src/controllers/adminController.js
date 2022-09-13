@@ -17,15 +17,15 @@ const registerAdmin = async (req, res) => {
                     const register = await Admin.create(data)
                     res.status(200).send({data: register})
                 }else{
-                    res.status(400).send({message: 'ErrorServer', data:undefined})
+                    res.status(200).send({message: 'ErrorServer', data:undefined})
                 }
             })
         }else{
-            res.status(400).send({message: 'Se necesita una contraseña', data:undefined})
+            res.status(200).send({message: 'Se necesita una contraseña', data:undefined})
         }
         
     }else{
-        res.status(400).send({message: 'El correo ya fue registrado', data:undefined})
+        res.status(200).send({message: 'El correo ya fue registrado', data:undefined})
     }   
 }
 
@@ -36,7 +36,7 @@ const loginAdmin = async (req, res) => {
     admin_arr = await Admin.find({email: data.email})
 
     if(admin_arr.length == 0){
-        res.status(400).send({message: 'El ususario no existe', data: undefined})
+        res.status(200).send({message: 'El ususario no existe', data: undefined})
     }else{
         let user = admin_arr[0]
 
@@ -47,7 +47,7 @@ const loginAdmin = async (req, res) => {
                     token: jwt.createToken(user)
                 })
             }else{
-                res.status(400).send({message: 'Contraseña incorrecta', data: undefined})
+                res.status(200).send({message: 'Contraseña incorrecta', data: undefined})
             }
         })  
     }

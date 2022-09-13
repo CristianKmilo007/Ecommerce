@@ -17,15 +17,15 @@ const registerClient = async (req, res) => {
                     const register = await Client.create(data)
                     res.status(200).send({data: register})
                 }else{
-                    res.status(400).send({message: 'ErrorServer', data:undefined})
+                    res.status(200).send({message: 'ErrorServer', data:undefined})
                 }
             })
         }else{
-            res.status(400).send({message: 'Se necesita una contraseña', data:undefined})
+            res.status(200).send({message: 'Se necesita una contraseña', data:undefined})
         }
         
     }else{
-        res.status(400).send({message: 'El correo ya fue registrado', data:undefined})
+        res.status(200).send({message: 'El correo ya fue registrado', data:undefined})
     }
     
 }
@@ -37,7 +37,7 @@ const loginClient = async (req, res) => {
     client_arr = await Client.find({email: data.email})
 
     if(client_arr.length == 0){
-        res.status(400).send({message: 'El ususario no existe', data: undefined})
+        res.status(200).send({message: 'El ususario no existe', data: undefined})
     }else{
         let user = client_arr[0]
 
@@ -48,13 +48,19 @@ const loginClient = async (req, res) => {
                     token: jwt.createToken(user)
                 })
             }else{
-                res.status(400).send({message: 'Contraseña incorrecta', data: undefined})
+                res.status(200).send({message: 'Contraseña incorrecta', data: undefined})
             }
         })  
     }
 }
 
+const listClient_filterAdmin = async (req, res) => {
+    let register = await Client.find()
+    res.status(200).send({data:register})
+}
+
 module.exports = {
    registerClient,
-   loginClient
+   loginClient,
+   listClient_filterAdmin
 }
