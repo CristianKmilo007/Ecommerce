@@ -6,7 +6,7 @@ import { AdminGuard } from "./guards/admin.guard";
 import { IndexClientComponent } from "./components/clients/index-client/index-client.component";
 
 const appRoute : Routes = [
-    {path: '', component: InicioComponent, canActivate: [AdminGuard] },
+    {path: 'inicio', component: InicioComponent, canActivate: [AdminGuard] },
 
     {path: 'panel', children:[
         {path: 'clients', component: IndexClientComponent, canActivate: [AdminGuard]}
