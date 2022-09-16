@@ -15,16 +15,16 @@
         <div class="card-header mb-5">
             <form class="form-inline pt-2">
                 <label class="sr-only" for="inline-form-input-name">Apellidos</label>
-                <input class="form-control mb-3 mr-sm-4" type="text" id="inline-form-input-name" placeholder="John Doe">
+                <input class="form-control mb-3 mr-sm-4" (keyup)="filter('names')" name="filterNames" [(ngModel)]="filterNames" type="text" id="inline-form-input-name" placeholder="Nombres">
                 <label class="sr-only" for="inline-form-input-username">Correo</label>
                 <div class="input-group mb-3 mr-sm-4">
                 <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                 </div>
-                <input class="form-control" type="text" id="inline-form-input-username" placeholder="Username">
+                <input class="form-control" type="text" (keyup)="filter('email')" name="filterEmail" [(ngModel)]="filterEmail" placeholder="Correo">
                 </div>
             
-                <button class="btn btn-primary mb-3" type="submit">Buscar cliente</button>
+                
             </form>
         </div>
         <div class="card-body border border-white">
@@ -96,5 +96,6 @@
                 </ul>
               </nav>
         </div>
+
   </div> 
 

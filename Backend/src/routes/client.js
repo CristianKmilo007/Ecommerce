@@ -6,7 +6,7 @@ const router = expres.Router()
 router.post('/registerClient', clientController.registerClient)
 router.post('/loginClient', clientController.loginClient)
 
-router.get('/listClient_filterAdmin', clientController.listClient_filterAdmin)
+router.get('/listClient_filterAdmin/:type/:filter?', clientController.listClient_filterAdmin)
 
 
 module.exports = router

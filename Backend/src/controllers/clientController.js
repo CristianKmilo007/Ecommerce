@@ -55,8 +55,22 @@ const loginClient = async (req, res) => {
 }
 
 const listClient_filterAdmin = async (req, res) => {
-    let register = await Client.find()
-    res.status(200).send({data:register})
+    
+    let type = req.params['type']
+    let filter = req.params['filter']
+
+    if(type == null || type == 'null'){
+        let register = await Client.find()
+        res.status(200).send({data:register})
+    }else{
+        if(type == 'names'){
+            let register = await Client.find({names:new RegExp(filter,'i')})
+            res.status(200).send({data:register})
+        }else if(type == 'email'){
+            let register = await Client.find({email:new RegExp(filter,'i')})
+            res.status(200).send({data:register})
+        }
+    }
 }
 
 module.exports = {
