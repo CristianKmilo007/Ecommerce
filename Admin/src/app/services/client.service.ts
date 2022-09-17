@@ -21,4 +21,9 @@ export class ClientService {
     return this._http.get(`${this.URI_CLIENT_BACKEND}/listClient_filterAdmin/${type}/${filter}`, {headers:headers})
   }
 
+  registerClient_Admin(data:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.post(`${this.URI_CLIENT_BACKEND}/registerClient_Admin`, data, {headers:headers})
+  }
+
 }

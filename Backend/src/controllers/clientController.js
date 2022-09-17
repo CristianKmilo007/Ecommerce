@@ -55,7 +55,7 @@ const loginClient = async (req, res) => {
 }
 
 const listClient_filterAdmin = async (req, res) => {
-    console.log(req.user)
+    
     if(req.user){
 
         if(req.user.role == 'Admin'){
@@ -85,8 +85,29 @@ const listClient_filterAdmin = async (req, res) => {
     }
 }
 
+const registerClient_Admin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+            let data = req.body
+
+            bcrypt.hash('123456789', null, null, async (err, hash) => {
+                if(hash){
+                    data.password = hash
+                    let register = await Client.create(data)
+                    res.status(200).send({data: register})
+                }else{
+                    res.status(200).send({message: 'ErrorServer', data:undefined})
+                }
+            })
+
+            
+        }
+    }
+}
+
 module.exports = {
    registerClient,
    loginClient,
-   listClient_filterAdmin
+   listClient_filterAdmin,
+   registerClient_Admin
 }
