@@ -1,0 +1,80 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5" style="padding-left: 24px !important">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5" >Clientes</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo actualiza los clientes de la tienda.</p>
+      <p class="font-size-sm font-weight-medium pl-md-4">
+        <a class="text-nowrap" [routerLink]="['/panel/clients']">Regresar<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
+    </div>
+</div>
+
+<form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+    <div class="card box-shadow-sm" style="margin-left: 24px !important" *ngIf="client != undefined; else noEdit">
+            <div class="card-header">
+                <h5 style="margin-bottom: 0px;">Actualizar cliente</h5>
+            </div>
+            <div class="card-body">
+                
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label for="validationCustom01" class="form-label">Nombres</label>
+                        <input class="form-control" type="text" placeholder="Nombres" required name="names" [(ngModel)]="client.names">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="validationCustom01" class="form-label">Apellidos</label>
+                        <input class="form-control" type="text" placeholder="Apellidos" required name="lastnames" [(ngModel)]="client.lastnames">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="validationCustom01" class="form-label">NIT</label>
+                        <input class="form-control" type="text" placeholder="NIT" required name="identification" [(ngModel)]="client.identification">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="validationCustom01" class="form-label">Telefono</label>
+                        <input class="form-control" type="text" placeholder="Telefono" required name="phone" [(ngModel)]="client.phone">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="validationCustom01" class="form-label">Direccion</label>
+                        <input class="form-control" type="text" placeholder="Direccion"  required name="direction" [(ngModel)]="client.direction">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="validationCustom01" class="form-label">Ciudad</label>
+                        <input class="form-control" type="text" placeholder="Ciudad" required name="city" [(ngModel)]="client.city">
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <label for="validationCustom01" class="form-label">Nombre del establecimiento</label>
+                        <input class="form-control" type="text" placeholder="Nombre del establecimiento" required name="establishment" [(ngModel)]="client.establishment">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="validationCustom01" class="form-label">Correo electrónico</label>
+                        <input class="form-control" type="text" placeholder="Correo electrónico" required name="email" [(ngModel)]="client.email">
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit" >Actualizar cliente</button>
+                
+            </div>
+    </div>
+    
+</form>
+
+<ng-template #noEdit>
+
+    <div class="card box-shadow-sm" style="margin-left: 24px !important">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Actualizar cliente</h5>
+        </div>
+        <div class="card-body d-flex flex-column text-center">
+            
+            <h3>No se encontro el registro</h3>
+            <i class="material-symbols-rounded" style="font-size: 100px;">
+                warning
+            </i>
+            
+        </div>
+</div>
+
+</ng-template>

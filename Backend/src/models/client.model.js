@@ -16,6 +16,7 @@ const clientSchema = new Schema(
         profile: {type: String, default: 'perfil.png', required: true},
         gender: {type: String, required: false},
         dateBirth: {type: String, required: false}, 
+        createdAt: {type: Date, default: Date.now, required: true}
     },
     {
         timestamps: true,

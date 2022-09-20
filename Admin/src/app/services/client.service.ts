@@ -26,4 +26,14 @@ export class ClientService {
     return this._http.post(`${this.URI_CLIENT_BACKEND}/registerClient_Admin`, data, {headers:headers})
   }
 
+  getClient_Admin(id:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.get(`${this.URI_CLIENT_BACKEND}/getClient_Admin/${id}`, {headers:headers})
+  }
+
+  updateClient_Admin(id:any, data:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.put(`${this.URI_CLIENT_BACKEND}/updateClient_Admin/${id}`, data, {headers:headers})
+  }
+
 }

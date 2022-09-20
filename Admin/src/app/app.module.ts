@@ -11,6 +11,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './components/login/login.component';
 import { IndexClientComponent } from './components/clients/index-client/index-client.component';
 import { CreateClientComponent } from './components/clients/create-client/create-client.component';
+import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CreateClientComponent } from './components/clients/create-client/create
     SidebarComponent,
     LoginComponent,
     IndexClientComponent,
-    CreateClientComponent
+    CreateClientComponent,
+    EditClientComponent
   ],
   imports: [
     BrowserModule,

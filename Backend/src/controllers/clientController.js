@@ -100,14 +100,73 @@ const registerClient_Admin = async (req, res) => {
                 }
             })
 
-            
+        }else{
+            res.status(500).send({message: 'NoAccess'})
         }
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
     }
 }
+
+const getClient_Admin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+            
+            let id = req.params['id']
+            
+            try {
+
+                let reg = await Client.findById({_id:id})
+                res.status(200).send({data:reg})
+
+            } catch (error) {
+                res.status(200).send({data:undefined})
+            }
+            
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const updateClient_Admin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+            
+            let id = req.params['id']
+            let data = req.body
+            
+            let reg = await Client.findByIdAndUpdate({_id:id},{
+                names : data.names,
+                lastnames : data.lastnames,
+                identification : data.identification,
+                phone : data.phone,
+                direction : data.direction,
+                city : data.city,
+                establishment : data.establishment,
+                email : data.email
+            })
+            res.status(200).send({data:reg})
+            
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
 
 module.exports = {
    registerClient,
    loginClient,
    listClient_filterAdmin,
-   registerClient_Admin
+   registerClient_Admin,
+   getClient_Admin,
+   updateClient_Admin
 }

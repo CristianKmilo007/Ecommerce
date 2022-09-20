@@ -5,7 +5,7 @@
     <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
       <p class="text-muted">Este módulo lista todos los clientes de la tienda.</p>
       <p class="font-size-sm font-weight-medium pl-md-4">
-        <a class="text-nowrap" [routerLink]="['/panel/clients/register']">Registrar nuevo<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
+        <a class="text-nowrap" [routerLink]="['/panel/clients/register']">Registrar cliente<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
     </div>
   </div>
 
@@ -49,7 +49,7 @@
                 <td>
               
                   <div class="d-flex justify-content-start">
-                    <i class="material-symbols-rounded mr-2" style="cursor: pointer" matTooltip="Editar" matTooltipPosition="right" >
+                    <i class="material-symbols-rounded mr-2" style="cursor: pointer" matTooltip="Editar" matTooltipPosition="right"  [routerLink]="['/panel/clients', item._id]">
                       edit_square
                       </i>
                       <i class="material-symbols-rounded mx-2" style="cursor: pointer" matTooltip="Eliminar" matTooltipPosition="right" >
