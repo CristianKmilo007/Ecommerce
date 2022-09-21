@@ -161,6 +161,24 @@ const updateClient_Admin = async (req, res) => {
     }
 }
 
+const deleteClient_Admin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+            
+            let id = req.params['id']
+                      
+            let reg = await Client.findByIdAndRemove({_id:id})
+            res.status(200).send({data:reg})
+            
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
 
 module.exports = {
    registerClient,
@@ -168,5 +186,6 @@ module.exports = {
    listClient_filterAdmin,
    registerClient_Admin,
    getClient_Admin,
-   updateClient_Admin
+   updateClient_Admin,
+   deleteClient_Admin
 }

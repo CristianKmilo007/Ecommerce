@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { ClientService } from 'src/app/services/client.service';
 
+declare const iziToast: any
+declare const jQuery:any
+declare const $:any
+
 @Component({
   selector: 'app-index-client',
   templateUrl: './index-client.component.html',
@@ -24,6 +28,10 @@ export class IndexClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initData()
+  }
+
+  initData(){
     this._clientService.listClient_filterAdmin(null, null, this.token).subscribe(
       (response:any)=>{
         
@@ -63,9 +71,32 @@ export class IndexClientComponent implements OnInit {
       )
     }
 
-    
+  }
 
+  delete(id:any){
+    this._clientService.deleteClient_Admin(id, this.token).subscribe(
+      response => {
+        iziToast.success({
+          title: 'OK',
+          timeout: 3000,
+          position: 'topRight',
+          message: 'Se elimino correctamente el cliente',
+          progressBar: false,
+          transitionIn: 'bounceInLeft',
+          transitionOut: 'fadeOutRight'
+        })
 
+        $('#delete-'+id).modal('hide')
+        $('.modal-backdrop').removeClass('show')
+
+        this.initData()
+      },
+      error => {
+        console.log(error);
+        
+      }
+      
+    )
   }
 
 }

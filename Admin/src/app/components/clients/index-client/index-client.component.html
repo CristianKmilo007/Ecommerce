@@ -52,9 +52,29 @@
                     <i class="material-symbols-rounded mr-2" style="cursor: pointer" matTooltip="Editar" matTooltipPosition="right"  [routerLink]="['/panel/clients', item._id]">
                       edit_square
                       </i>
-                      <i class="material-symbols-rounded mx-2" style="cursor: pointer" matTooltip="Eliminar" matTooltipPosition="right" >
+                      <i class="material-symbols-rounded mx-2" style="cursor: pointer" matTooltip="Eliminar" matTooltipPosition="right" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
                         delete
                         </i>
+                  </div>
+
+                  <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
+                      <div class="modal-content" >
+                        <div class="modal-header">
+                          <h4 class="modal-title">Eliminar cliente</h4>
+                          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                        </div>
+                        <div class="modal-body">
+                          <p class="mb-0">Cliente: &nbsp;&nbsp;   <b> {{item.names}} {{item.lastnames}} </b><br>
+                            Establecimiento: &nbsp;&nbsp;  <b> {{item.establishment}}</b>
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
+                          <button class="btn btn-primary btn-shadow" type="button" (click)="delete(item._id)">Eliminar</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                 </td>
