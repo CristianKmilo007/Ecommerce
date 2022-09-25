@@ -17,6 +17,9 @@ export class IndexClientComponent implements OnInit {
   public filterNames = ''
   public filterEmail = ''
 
+  public page = 1
+  public pageSize = 5
+
   public token : any 
 
   constructor(
@@ -86,10 +89,10 @@ export class IndexClientComponent implements OnInit {
           transitionOut: 'fadeOutRight'
         })
 
-        $('#delete-'+id).modal('hide')
-        $('.modal-backdrop').removeClass('show')
+        $('#delete-'+id).modal('hide')  //Ocultar modal
+        $('.modal-backdrop').removeClass('show') //Ocultar modal
 
-        this.initData()
+        this.initData() //Actualizar tabla
       },
       error => {
         console.log(error);
