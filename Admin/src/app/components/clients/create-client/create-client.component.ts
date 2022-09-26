@@ -14,6 +14,7 @@ export class CreateClientComponent implements OnInit {
 
   public client : any = {}
   public token : any
+  public load_btn = false
 
   constructor(
     private _clientService : ClientService,
@@ -28,7 +29,7 @@ export class CreateClientComponent implements OnInit {
 
   register(registerForm:any){
     if (registerForm.valid){
-      
+      this.load_btn = true
       this._clientService.registerClient_Admin(this.client, this.token).subscribe(
         response => {
           iziToast.success({
@@ -42,6 +43,9 @@ export class CreateClientComponent implements OnInit {
           })
 
           registerForm.reset()
+    
+          this.load_btn = false
+          
           this._router.navigate(['/panel/clients'])
         },
         error => {

@@ -5,6 +5,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { Placement as PopperPlacement, Options } from '@popperjs/core';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { IndexClientComponent } from './components/clients/index-client/index-client.component';
 import { CreateClientComponent } from './components/clients/create-client/create-client.component';
 import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { EditClientComponent } from './components/clients/edit-client/edit-clien
     LoginComponent,
     IndexClientComponent,
     CreateClientComponent,
-    EditClientComponent
+    EditClientComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { EditClientComponent } from './components/clients/edit-client/edit-clien
     routing,
     BrowserAnimationsModule,
     MatTooltipModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

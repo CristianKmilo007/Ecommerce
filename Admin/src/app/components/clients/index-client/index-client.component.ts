@@ -22,6 +22,8 @@ export class IndexClientComponent implements OnInit {
 
   public token : any 
 
+  public load_data = true
+
   constructor(
     private _clientService : ClientService,
     private _adminService : AdminService
@@ -39,6 +41,7 @@ export class IndexClientComponent implements OnInit {
       (response:any)=>{
         
         this.clients = response.data
+        this.load_data = false
         
       },
       (error)=>{
@@ -55,7 +58,6 @@ export class IndexClientComponent implements OnInit {
         (response:any)=>{
           
           this.clients = response.data
-          
         },
         (error)=>{
           console.log(error)

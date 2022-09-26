@@ -34,52 +34,63 @@
             <thead >
               <tr>
                 <th class="border-top-0">#</th>
+                <th class="border-top-0">NIT</th>
                 <th class="border-top-0">Nombres</th>
                 <th class="border-top-0">Apellidos</th>
-                <th class="border-top-0">Correo</th>
+                <th class="border-top-0">Establecimiento</th>
                 <th class="border-top-0">Opciones</th>
               </tr>
             </thead>
-            <tbody *ngFor="let item of clients | slice: (page-1)*pageSize : (page-1) * pageSize + pageSize ; let indice = index">
+            <tbody *ngIf="load_data">
               <tr>
-                <td>{{indice+1}}</td>
-                <td>{{item.names}}</td>
-                <td>{{item.lastnames}}</td>
-                <td>{{item.email}}</td>
                 <td>
-              
-                  <div class="d-flex justify-content-start">
-                    <i class="material-symbols-rounded mr-2" style="cursor: pointer" matTooltip="Editar" matTooltipPosition="above" [routerLink]="['/panel/clients', item._id]">
-                      edit_square
-                      </i>
-                      <i class="material-symbols-rounded mx-2" style="cursor: pointer" matTooltip="Eliminar" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
-                        delete
-                        </i>
-                  </div>
-
-                  <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
-                      <div class="modal-content" >
-                        <div class="modal-header">
-                          <h4 class="modal-title">Eliminar cliente</h4>
-                          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
-                        </div>
-                        <div class="modal-body">
-                          <p class="mb-0">Cliente: &nbsp;&nbsp;   <b> {{item.names}} {{item.lastnames}} </b><br>
-                            Establecimiento: &nbsp;&nbsp;  <b> {{item.establishment}}</b>
-                          </p>
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
-                          <button class="btn btn-primary btn-shadow" type="button" (click)="delete(item._id)">Eliminar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                  <app-spinner></app-spinner>
                 </td>
               </tr>
             </tbody>
+            <ng-container *ngIf="!load_data">
+              <tbody *ngFor="let item of clients | slice: (page-1)*pageSize : (page-1) * pageSize + pageSize ; let indice = index">
+                <tr>
+                  <td>{{indice+1}}</td>
+                  <td>{{item.identification}}</td>
+                  <td>{{item.names}}</td>
+                  <td>{{item.lastnames}}</td>
+                  <td>{{item.establishment}}</td>
+                  <td>
+                
+                    <div class="d-flex justify-content-start">
+                      <i class="material-symbols-rounded mr-2" style="cursor: pointer" matTooltip="Editar" matTooltipPosition="above" [routerLink]="['/panel/clients', item._id]">
+                        edit_square
+                        </i>
+                        <i class="material-symbols-rounded mx-2" style="cursor: pointer" matTooltip="Eliminar" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
+                          delete
+                          </i>
+                    </div>
+  
+                    <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
+                        <div class="modal-content" >
+                          <div class="modal-header">
+                            <h4 class="modal-title">Eliminar cliente</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <p class="mb-0">Cliente: &nbsp;&nbsp;   <b> {{item.names}} {{item.lastnames}} </b><br>
+                              Establecimiento: &nbsp;&nbsp;  <b> {{item.establishment}}</b>
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-primary btn-shadow" type="button" (click)="delete(item._id)">Eliminar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </td>
+                </tr>
+              </tbody>
+            </ng-container>
           </table>
           
         </div>

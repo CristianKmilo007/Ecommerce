@@ -16,6 +16,8 @@ export class EditClientComponent implements OnInit {
   public client : any = {}
   public id : any
   public token : any
+  public load_btn = false
+  public load_data = true
 
   constructor(
     private _route : ActivatedRoute,
@@ -36,8 +38,12 @@ export class EditClientComponent implements OnInit {
             console.log(response)
             if(response.data == undefined){
               this.client = response.undefined
+              this.load_data = false
+              
             }else{
               this.client = response.data
+              this.load_data = false
+              
             }
           },
           error => {
@@ -50,6 +56,7 @@ export class EditClientComponent implements OnInit {
 
   update(updateForm:any){
     if(updateForm.valid){
+      this.load_btn = true
       this._clientService.updateClient_Admin(this.id, this.client, this.token).subscribe(
         response => {
           iziToast.success({
@@ -61,6 +68,9 @@ export class EditClientComponent implements OnInit {
             transitionIn: 'bounceInLeft',
             transitionOut: 'fadeOutRight'
           })
+          
+            this.load_btn = false
+          
 
           this._router.navigate(['/panel/clients'])
         },
