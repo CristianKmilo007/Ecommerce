@@ -15,15 +15,15 @@
         </div>
         <div class="card-header mb-5">
             <form class="form-inline pt-2">
-                <label class="sr-only" for="inline-form-input-name">Apellidos</label>
-                <input class="form-control mb-3 mr-sm-4" (keyup)="filter('names')" name="filterNames" [(ngModel)]="filterNames" type="text" id="inline-form-input-name" placeholder="Nombres">
-                <label class="sr-only" for="inline-form-input-username">Correo</label>
-                <div class="input-group mb-3 mr-sm-4">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">@</div>
-                </div>
-                <input class="form-control" type="text" (keyup)="filter('email')" name="filterEmail" [(ngModel)]="filterEmail" placeholder="Correo">
-                </div>
+                <label class="sr-only" for="inline-form-input-name">NIT</label>
+                <input class="form-control mr-sm-4" (keyup)="filter('identification')" name="filterIdentification" [(ngModel)]="filterIdentification" type="text" id="inline-form-input-name" placeholder="NIT">
+                <label class="sr-only" for="inline-form-input-name">Nombres</label>
+                <input class="form-control mr-sm-4" (keyup)="filter('names')" name="filterNames" [(ngModel)]="filterNames" type="text" id="inline-form-input-name" placeholder="Nombres">
+                <label class="sr-only" for="inline-form-input-name">Correo</label>
+                <input class="form-control mr-sm-4" type="text" (keyup)="filter('lastnames')" name="filterLastnames" [(ngModel)]="filterLastnames" placeholder="Apellidos">
+                <label class="sr-only" for="inline-form-input-name">Establecimiento</label>
+                <input class="form-control mr-sm-4" type="text" (keyup)="filter('establishment')" name="filterEstablishment" [(ngModel)]="filterEstablishment" placeholder="Establecimiento">
+                
             
                 
             </form>

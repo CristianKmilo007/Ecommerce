@@ -14,8 +14,11 @@ declare const $:any
 export class IndexClientComponent implements OnInit {
 
   public clients : Array<any> = []
+
+  public filterIdentification = ''
   public filterNames = ''
-  public filterEmail = ''
+  public filterLastnames = ''
+  public filterEstablishment = ''
 
   public page = 1
   public pageSize = 5
@@ -52,8 +55,17 @@ export class IndexClientComponent implements OnInit {
 
   filter(type:any){
 
-
-    if(type == 'names'){
+    if(type == 'identification'){
+      this._clientService.listClient_filterAdmin(type, this.filterIdentification, this.token).subscribe(
+        (response:any)=>{
+          
+          this.clients = response.data
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    }else if(type == 'names'){
       this._clientService.listClient_filterAdmin(type, this.filterNames, this.token).subscribe(
         (response:any)=>{
           
@@ -63,8 +75,19 @@ export class IndexClientComponent implements OnInit {
           console.log(error)
         }
       )
-    }else if(type == 'email'){
-      this._clientService.listClient_filterAdmin(type, this.filterEmail, this.token).subscribe(
+    }else if(type == 'lastnames'){
+      this._clientService.listClient_filterAdmin(type, this.filterLastnames, this.token).subscribe(
+        (response:any)=>{
+          
+          this.clients = response.data
+          
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    }else if(type == 'establishment'){
+      this._clientService.listClient_filterAdmin(type, this.filterEstablishment, this.token).subscribe(
         (response:any)=>{
           
           this.clients = response.data
