@@ -16,13 +16,13 @@
         <div class="card-header mb-5">
             <form class="form-inline pt-2">
                 <label class="sr-only" for="inline-form-input-name">NIT</label>
-                <input class="form-control mr-sm-4" (keyup)="filter('identification')" name="filterIdentification" [(ngModel)]="filterIdentification" type="text" id="inline-form-input-name" placeholder="NIT">
+                <input class="form-control mb-3 mr-sm-4" (keyup)="filter('identification')" name="filterIdentification" [(ngModel)]="filterIdentification" type="text" id="inline-form-input-name" placeholder="NIT">
                 <label class="sr-only" for="inline-form-input-name">Nombres</label>
-                <input class="form-control mr-sm-4" (keyup)="filter('names')" name="filterNames" [(ngModel)]="filterNames" type="text" id="inline-form-input-name" placeholder="Nombres">
+                <input class="form-control mb-3 mr-sm-4" (keyup)="filter('names')" name="filterNames" [(ngModel)]="filterNames" type="text" id="inline-form-input-name" placeholder="Nombres">
                 <label class="sr-only" for="inline-form-input-name">Correo</label>
-                <input class="form-control mr-sm-4" type="text" (keyup)="filter('lastnames')" name="filterLastnames" [(ngModel)]="filterLastnames" placeholder="Apellidos">
+                <input class="form-control mb-3 mr-sm-4" type="text" (keyup)="filter('lastnames')" name="filterLastnames" [(ngModel)]="filterLastnames" placeholder="Apellidos">
                 <label class="sr-only" for="inline-form-input-name">Establecimiento</label>
-                <input class="form-control mr-sm-4" type="text" (keyup)="filter('establishment')" name="filterEstablishment" [(ngModel)]="filterEstablishment" placeholder="Establecimiento">
+                <input class="form-control mb-3 mr-sm-4" type="text" (keyup)="filter('establishment')" name="filterEstablishment" [(ngModel)]="filterEstablishment" placeholder="Establecimiento">
                 
             
                 
@@ -38,7 +38,7 @@
                 <th class="border-top-0">Nombres</th>
                 <th class="border-top-0">Apellidos</th>
                 <th class="border-top-0">Establecimiento</th>
-                <th class="border-top-0">Opciones</th>
+                <th class="border-top-0 text-center" >Opciones</th>
               </tr>
             </thead>
             <tbody *ngIf="load_data">
@@ -58,13 +58,42 @@
                   <td>{{item.establishment}}</td>
                   <td>
                 
-                    <div class="d-flex justify-content-start">
-                      <i class="material-symbols-rounded mr-2" style="cursor: pointer" matTooltip="Editar" matTooltipPosition="above" [routerLink]="['/panel/clients', item._id]">
+                    <div class="d-flex justify-content-center">
+                      <i class="material-symbols-rounded mr-1" style="cursor: pointer; margin-top: 3.1px;" matTooltip="Informacion del cliente" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#information-'+item._id">
+                        feed
+                        </i>
+                      <i class="material-symbols-rounded mx-1" style="cursor: pointer" matTooltip="Editar cliente" matTooltipPosition="above" [routerLink]="['/panel/clients', item._id]">
                         edit_square
                         </i>
-                        <i class="material-symbols-rounded mx-2" style="cursor: pointer" matTooltip="Eliminar" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
+                        <i class="material-symbols-rounded ml-1" style="cursor: pointer; margin-top: 2.1px" matTooltip="Eliminar cliente" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
                           delete
                           </i>
+                    </div>
+
+                    <div class="modal fade" id="information-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
+                        <div class="modal-content" >
+                          <div class="modal-header">
+                            <h4 class="modal-title">Informacion del cliente</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <p class="mb-0">
+                              NIT: &nbsp;&nbsp;   <b> {{item.identification}}</b><br>
+                              Cliente: &nbsp;&nbsp;   <b> {{item.names}} {{item.lastnames}} </b><br>
+                              Establecimiento: &nbsp;&nbsp;  <b> {{item.establishment}}</b><br>
+                              Telefono: &nbsp;&nbsp;  <b> {{item.phone}}</b><br>
+                              Direccion: &nbsp;&nbsp;  <b> {{item.direction}}</b><br>
+                              Ciudad: &nbsp;&nbsp;  <b> {{item.city}}</b><br>
+                              Correo: &nbsp;&nbsp;  <b> {{item.email}}</b><br>
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-secondary " type="button" data-dismiss="modal">Cerrar</button>
+                            <button class="btn btn-primary btn-shadow" data-dismiss="modal" type="button" [routerLink]="['/panel/clients', item._id]">Editar cliente</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
   
                     <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">

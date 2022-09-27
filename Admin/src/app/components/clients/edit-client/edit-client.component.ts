@@ -5,6 +5,8 @@ import { AdminService } from 'src/app/services/admin.service';
 import { ClientService } from 'src/app/services/client.service';
 
 declare const iziToast: any
+declare const jQuery:any
+declare const $:any
 
 @Component({
   selector: 'app-edit-client',
@@ -30,6 +32,7 @@ export class EditClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this._route.params.subscribe(
       params =>{
         this.id = params['id']
@@ -41,8 +44,11 @@ export class EditClientComponent implements OnInit {
               this.load_data = false
               
             }else{
+              
               this.client = response.data
               this.load_data = false
+
+              
               
             }
           },

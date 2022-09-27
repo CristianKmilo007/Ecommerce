@@ -67,11 +67,17 @@ const listClient_filterAdmin = async (req, res) => {
                 let register = await Client.find()
                 res.status(200).send({data:register})
             }else{
-                if(type == 'names'){
+                if(type == 'identification'){
+                    let register = await Client.find({identification:new RegExp(filter,'i')})
+                    res.status(200).send({data:register})
+                }else if(type == 'names'){
                     let register = await Client.find({names:new RegExp(filter,'i')})
                     res.status(200).send({data:register})
-                }else if(type == 'email'){
-                    let register = await Client.find({email:new RegExp(filter,'i')})
+                }else if(type == 'lastnames'){
+                    let register = await Client.find({lastnames:new RegExp(filter,'i')})
+                    res.status(200).send({data:register})
+                }else if(type == 'establishment'){
+                    let register = await Client.find({establishment:new RegExp(filter,'i')})
                     res.status(200).send({data:register})
                 }
             }
