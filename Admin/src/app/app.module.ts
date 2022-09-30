@@ -19,6 +19,7 @@ import { IndexClientComponent } from './components/clients/index-client/index-cl
 import { CreateClientComponent } from './components/clients/create-client/create-client.component';
 import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { CreateProductsComponent } from './components/products/create-products/create-products.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     IndexClientComponent,
     CreateClientComponent,
     EditClientComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CreateProductsComponent
   ],
   imports: [
     BrowserModule,
