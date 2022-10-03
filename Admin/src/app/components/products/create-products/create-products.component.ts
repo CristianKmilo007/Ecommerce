@@ -32,13 +32,10 @@ export class CreateProductsComponent implements OnInit {
 
   register(registerForm:any){
     if (registerForm.valid) {
-
-      console.log(this.product)
-      console.log(this.file)
       
       this._productService.registerProduct_Admin(this.product, this.file, this.token).subscribe(
         response =>{
-          console.log(response);
+          
           
         },
         error => {

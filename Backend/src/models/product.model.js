@@ -12,7 +12,7 @@ const productSchema = new Schema(
         stock: {type: Number, required: true},
         sales: {type: Number, default: 0, required: true},
         points: {type: Number, default: 0, required: true},
-        laboratory: {type: Number, required: true},
+        laboratory: {type: String, required: true},
         status: {type: String, default: 'Edit', required: true},
         createdAt: {type: Date, default: Date.now, required: true}
     },
