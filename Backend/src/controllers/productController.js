@@ -91,9 +91,85 @@ const getFrontPage = async (req, res)=>{
     })
 }
 
+const getProduct_Admin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+            
+            let id = req.params['id']
+            
+            try {
+
+                let reg = await Product.findById({_id:id})
+                res.status(200).send({data:reg})
+
+            } catch (error) {
+                res.status(200).send({data:undefined})
+            }
+            
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const updateProduct_Admin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+
+            let id = req.params['id']
+            let data = req.body
+
+            if(req.files){
+                let imgPath = req.files.image.path
+                let name = imgPath.split('\\')
+                let nameImg = name[3]
+
+                let reg = await Product.findByIdAndUpdate({_id:id}, {
+                    title: data.title,
+                    stock: data.stock,
+                    price: data.price,
+                    laboratory: data.laboratory,
+                    description: data.description,
+                    image: nameImg
+                })
+
+                fs.stat('./src/uploads/products/'+reg.image, (err)=>{
+                    if(!err){
+                        fs.unlink('./src/uploads/products/'+reg.image, (err)=>{
+                            if(err) throw err
+                        })
+                    }
+                })
+
+                res.status(200).send({data:reg})
+
+            }else{
+                let reg = await Product.findByIdAndUpdate({_id:id}, {
+                    title: data.title,
+                    stock: data.stock,
+                    price: data.price,
+                    laboratory: data.laboratory,
+                    description: data.description
+                })
+                res.status(200).send({data:reg})
+            }
+
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
 module.exports = {
     registerProduct_Admin,
     listProducts_filterAdmin,
     deleteProduct_Admin,
-    getFrontPage
+    getFrontPage,
+    getProduct_Admin,
+    updateProduct_Admin
 }

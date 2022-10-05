@@ -21,6 +21,7 @@ import { EditClientComponent } from './components/clients/edit-client/edit-clien
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CreateProductsComponent } from './components/products/create-products/create-products.component';
 import { IndexProductsComponent } from './components/products/index-products/index-products.component';
+import { EditProductsComponent } from './components/products/edit-products/edit-products.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { IndexProductsComponent } from './components/products/index-products/ind
     EditClientComponent,
     SpinnerComponent,
     CreateProductsComponent,
-    IndexProductsComponent
+    IndexProductsComponent,
+    EditProductsComponent
   ],
   imports: [
     BrowserModule,

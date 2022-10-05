@@ -1,0 +1,106 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5" style="padding-left: 24px !important">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo actualiza los productos de la tienda.</p>
+      <p class="font-size-sm font-weight-medium pl-md-4">
+        <a class="text-nowrap" [routerLink]="['/panel/products']">Regresar<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
+    </div>
+  </div>
+
+<form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+
+    <div class="card box-shadow-sm" style="margin-left: 24px !important" *ngIf="load_data">
+      <div class="card-header">
+          <h5 style="margin-bottom: 0px;">Actualizar producto</h5>
+      </div>
+      <app-spinner></app-spinner>
+    </div>
+
+    <ng-container *ngIf="!load_data">
+      <div class="card box-shadow-sm" style="margin-left: 24px !important" *ngIf="product != undefined; else noEdit">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Actualizar producto</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                  <div class="col-lg-12 form-group">	
+                      <label for="">Nombre del producto</label>
+                      <input type="text" class="form-control" placeholder="Nombre del producto" required name="title" [(ngModel)]="product.title">
+                  </div>
+                  <div class="col-lg-4 form-group">	
+                      <label for="">Cantidad</label>
+                      <input type="number" class="form-control" placeholder="Cantidad inicial" required name="stock" [(ngModel)]="product.stock">
+                  </div>
+                  <div class="col-lg-4 form-group">	
+                      <label for="">Precio</label>
+                      <input type="number" class="form-control" placeholder="Precio" required name="price" [(ngModel)]="product.price">
+                  </div>
+                  <div class="col-lg-4 form-group">	
+                      <label for="">Laboratorio</label>
+                      <select class="form-control custom-select" placeholder="Seleccionar" id="select-input" required name="laboratory" [(ngModel)]="product.laboratory">
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="Bioquifar">Bioquifar</option>
+                        <option value="Anglopharma">Anglopharma</option>
+                        <option value="Coaspharma">Coaspharma</option>
+                      </select>
+                  </div>
+
+                  <div class="col-lg-12 form-group">
+                      <label for="">Descripción corta</label>
+                      <textarea class="form-control" placeholder="Descripción de producto" required rows="5" name="description" [(ngModel)]="product.description" style="height: 177px;"></textarea>
+                  </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-12 form-group">	
+                    <label for="">Imagen</label>
+                    <div class="custom-file">
+                      <input class="custom-file-input" type="file" id="file-input" (change)="fileChangeEvent($event)">
+                      <label class="custom-file-label" id="input-frontPage" for="file-input" style="white-space:nowrap; overflow: hidden;">Seleccionar imagen</label>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                  <img [src]="imgSelect" class="img-thumbnail" alt="Rounded image">
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+      <button *ngIf="!load_btn" class="btn btn-primary" type="submit" >Actualizar producto</button>
+      <button *ngIf="load_btn" type="button" class="btn btn-primary" disabled>
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          Actualizando...
+      </button>
+  </div>
+      </div>
+    </ng-container>
+
+        
+  
+</form>
+
+<ng-template #noEdit>
+
+  <div class="card box-shadow-sm" style="margin-left: 24px !important">
+      <div class="card-header">
+          <h5 style="margin-bottom: 0px;">Actualizar producto</h5>
+      </div>
+      <div class="card-body d-flex flex-column text-center">
+          
+          <h3>No se encontro el registro</h3>
+          <i class="material-symbols-rounded" style="font-size: 100px;">
+              warning
+          </i>
+          
+      </div>
+</div>
+
+</ng-template>
+
