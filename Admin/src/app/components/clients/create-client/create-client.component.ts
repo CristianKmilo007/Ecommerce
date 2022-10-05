@@ -36,7 +36,7 @@ export class CreateClientComponent implements OnInit {
             title: 'OK',
             timeout: 3000,
             position: 'topRight',
-            message: 'Registro de cliente exitoso',
+            message: 'Se registro correctamente el nuevo cliente',
             progressBar: false,
             transitionIn: 'bounceInLeft',
             transitionOut: 'fadeOutRight'

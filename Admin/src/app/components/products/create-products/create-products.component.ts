@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
 import { AdminService } from 'src/app/services/admin.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -17,12 +18,14 @@ export class CreateProductsComponent implements OnInit {
   public product:any = {}
   public file : any = undefined
   public imgSelect : any | ArrayBuffer = '../../../../assets/img/default.jpg'
+  public load_btn = false
 
   public token:any
 
   constructor(
     private _productService : ProductService,
-    private _adminService : AdminService
+    private _adminService : AdminService,
+    private _router : Router
   ) { 
     this.token = this._adminService.getToken()
   }
@@ -32,17 +35,43 @@ export class CreateProductsComponent implements OnInit {
 
   register(registerForm:any){
     if (registerForm.valid) {
-      
-      this._productService.registerProduct_Admin(this.product, this.file, this.token).subscribe(
+      if(this.file != undefined){
+        this.load_btn = true
+        this._productService.registerProduct_Admin(this.product, this.file, this.token).subscribe(
         response =>{
+          iziToast.success({
+            title: 'OK',
+            timeout: 3000,
+            position: 'topRight',
+            message: 'Se registro correctamente el nuevo producto',
+            progressBar: false,
+            transitionIn: 'bounceInLeft',
+            transitionOut: 'fadeOutRight'
+          })
+
+          registerForm.reset()
+    
+          this.load_btn = false
           
+          this._router.navigate(['/panel/products'])
           
         },
         error => {
           console.log(error);
-          
+          this.load_btn = false
         }
       )
+      }else{
+        iziToast.error({
+          title: 'ERROR',
+          timeout: 3000,
+          position: 'topRight',
+          message: 'Debes subir una imagen para registrar el producto',
+          progressBar: false,
+          transitionIn: 'bounceInLeft',
+          transitionOut: 'fadeOutRight'
+        })
+      }
       
     } else {
       iziToast.error({
@@ -54,6 +83,7 @@ export class CreateProductsComponent implements OnInit {
         transitionIn: 'bounceInLeft',
         transitionOut: 'fadeOutRight'
       })
+      this.load_btn = false
     }
   }
 

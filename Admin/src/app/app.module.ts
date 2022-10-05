@@ -20,6 +20,7 @@ import { CreateClientComponent } from './components/clients/create-client/create
 import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CreateProductsComponent } from './components/products/create-products/create-products.component';
+import { IndexProductsComponent } from './components/products/index-products/index-products.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CreateProductsComponent } from './components/products/create-products/c
     CreateClientComponent,
     EditClientComponent,
     SpinnerComponent,
-    CreateProductsComponent
+    CreateProductsComponent,
+    IndexProductsComponent
   ],
   imports: [
     BrowserModule,

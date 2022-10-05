@@ -30,4 +30,14 @@ export class ProductService {
     return this._http.post(`${this.URI_PRODUCT_BACKEND}/registerProduct_Admin`, fd, {headers:headers})
   }
 
+  listProducts_filterAdmin(type:any, filter:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.get(`${this.URI_PRODUCT_BACKEND}/listProducts_filterAdmin/${type}/${filter}`, {headers:headers})
+  }
+
+  deleteProduct_Admin(id:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.delete(`${this.URI_PRODUCT_BACKEND}/deleteProduct_Admin/${id}`, {headers:headers})
+  }
+
 }
