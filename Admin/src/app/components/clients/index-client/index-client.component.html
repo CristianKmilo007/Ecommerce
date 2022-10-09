@@ -110,7 +110,11 @@
                           </div>
                           <div class="modal-footer">
                             <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
-                            <button class="btn btn-primary btn-shadow" type="button" (click)="delete(item._id)">Eliminar</button>
+                            <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="button" (click)="delete(item._id)">Eliminar</button>
+                            <button *ngIf="load_btn" type="button" class="btn btn-primary" disabled>
+                              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                              Eliminando...
+                          </button>
                           </div>
                         </div>
                       </div>

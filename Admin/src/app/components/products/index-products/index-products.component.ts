@@ -25,6 +25,7 @@ export class IndexProductsComponent implements OnInit {
   public token : any
 
   public load_data = true
+  public load_btn = false
 
   public URI_PRODUCT_BACKEND
 
@@ -77,6 +78,7 @@ export class IndexProductsComponent implements OnInit {
   }
 
   delete(id:any){
+    this.load_btn = true
     this._productService.deleteProduct_Admin(id, this.token).subscribe(
       response => {
         iziToast.success({
@@ -92,10 +94,21 @@ export class IndexProductsComponent implements OnInit {
         $('#delete-'+id).modal('hide')  //Ocultar modal
         $('.modal-backdrop').removeClass('show') //Ocultar modal
 
+        this.load_btn = false
         this.initData() //Actualizar tabla
       },
       error => {
+        iziToast.error({
+          title: 'ERROR',
+          timeout: 3000,
+          position: 'topRight',
+          message: 'Ocurrio un error en el servidor',
+          progressBar: false,
+          transitionIn: 'bounceInLeft',
+          transitionOut: 'fadeOutRight'
+        })
         console.log(error);
+        this.load_btn = false
         
       }
       

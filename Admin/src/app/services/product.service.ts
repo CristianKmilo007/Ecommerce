@@ -67,4 +67,19 @@ export class ProductService {
     
   }
 
+  listInventory_productAdmin(id:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.get(`${this.URI_PRODUCT_BACKEND}/listInventory_productAdmin/${id}`, {headers:headers})
+  }
+
+  deleteInventory_productAdmin(id:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.delete(`${this.URI_PRODUCT_BACKEND}/deleteInventory_productAdmin/${id}`, {headers:headers})
+  }
+
+  registerInventory_productAdmin(data:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.post(`${this.URI_PRODUCT_BACKEND}/registerInventory_productAdmin`, data, {headers:headers})
+  }
+
 }

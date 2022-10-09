@@ -1,4 +1,5 @@
 const Product = require('../models/product.model')
+const Inventory = require('../models/inventory.model')
 const fs = require('fs')
 const path = require('path')
 
@@ -15,7 +16,14 @@ const registerProduct_Admin = async (req, res) => {
             data.image = nameImg
             let reg = await Product.create(data)
 
-            res.status(200).send({data:reg})
+            let inventory = await Inventory.create({
+                admin: req.user.sub,
+                stock: data.stock,
+                supplier: 'Primer registro',
+                product: reg._id
+            })
+
+            res.status(200).send({data:reg, inventory:inventory})
 
         }else{
             res.status(500).send({message: 'NoAccess'})
@@ -66,6 +74,15 @@ const deleteProduct_Admin = async (req, res) => {
             let id = req.params['id']
                       
             let reg = await Product.findByIdAndRemove({_id:id})
+
+            fs.stat('./src/uploads/products/'+reg.image, (err)=>{
+                if(!err){
+                    fs.unlink('./src/uploads/products/'+reg.image, (err)=>{
+                        if(err) throw err
+                    })
+                }
+            })
+            
             res.status(200).send({data:reg})
             
         }else{
@@ -165,11 +182,77 @@ const updateProduct_Admin = async (req, res) => {
     }
 }
 
+const listInventory_productAdmin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+
+            let id = req.params['id']
+            let reg = await Inventory.find({product: id}).populate('admin').sort({createdAt: -1})
+
+            res.status(200).send({data:reg})
+
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const deleteInventory_productAdmin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+
+            let id = req.params['id']
+            
+            let reg = await Inventory.findByIdAndRemove({_id:id})
+            let product = await Product.findById({_id:reg.product})
+            let newStock = parseInt(product.stock) - parseInt(reg.stock)
+            let productUp = await Product.findByIdAndUpdate({_id:reg.product},{
+                stock: newStock
+            })
+
+            res.status(200).send({data:productUp})
+
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const registerInventory_productAdmin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+
+            let data = req.body
+
+            let reg = await Inventory.create(data)
+            let product = await Product.findById({_id:reg.product})
+            let newStock = parseInt(product.stock) + parseInt(reg.stock)
+            let productUp = await Product.findByIdAndUpdate({_id:reg.product},{
+                stock: newStock
+            })
+
+            res.status(200).send({data:productUp})
+
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
 module.exports = {
     registerProduct_Admin,
     listProducts_filterAdmin,
     deleteProduct_Admin,
     getFrontPage,
     getProduct_Admin,
-    updateProduct_Admin
+    updateProduct_Admin,
+    listInventory_productAdmin,
+    deleteInventory_productAdmin,
+    registerInventory_productAdmin
 }

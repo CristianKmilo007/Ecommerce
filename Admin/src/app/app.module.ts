@@ -22,6 +22,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CreateProductsComponent } from './components/products/create-products/create-products.component';
 import { IndexProductsComponent } from './components/products/index-products/index-products.component';
 import { EditProductsComponent } from './components/products/edit-products/edit-products.component';
+import { InventoryProductsComponent } from './components/products/inventory-products/inventory-products.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EditProductsComponent } from './components/products/edit-products/edit-
     SpinnerComponent,
     CreateProductsComponent,
     IndexProductsComponent,
-    EditProductsComponent
+    EditProductsComponent,
+    InventoryProductsComponent
   ],
   imports: [
     BrowserModule,

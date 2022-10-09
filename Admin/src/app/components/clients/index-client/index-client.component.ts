@@ -26,6 +26,7 @@ export class IndexClientComponent implements OnInit {
   public token : any 
 
   public load_data = true
+  public load_btn = false
 
   constructor(
     private _clientService : ClientService,
@@ -102,6 +103,7 @@ export class IndexClientComponent implements OnInit {
   }
 
   delete(id:any){
+    this.load_btn = true
     this._clientService.deleteClient_Admin(id, this.token).subscribe(
       response => {
         iziToast.success({
@@ -117,11 +119,21 @@ export class IndexClientComponent implements OnInit {
         $('#delete-'+id).modal('hide')  //Ocultar modal
         $('.modal-backdrop').removeClass('show') //Ocultar modal
 
+        this.load_btn = false
         this.initData() //Actualizar tabla
       },
       error => {
+        iziToast.error({
+          title: 'ERROR',
+          timeout: 3000,
+          position: 'topRight',
+          message: 'Ocurrio un error en el servidor',
+          progressBar: false,
+          transitionIn: 'bounceInLeft',
+          transitionOut: 'fadeOutRight'
+        })
         console.log(error);
-        
+        this.load_btn = false
       }
       
     )
