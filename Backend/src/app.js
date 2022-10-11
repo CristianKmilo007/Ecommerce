@@ -10,6 +10,9 @@ const port = process.env.PORT || 5000
 const clientRoute = require('./routes/client')
 const adminRoute = require('./routes/admin')
 const productRoute = require('./routes/product')
+const couponRoute = require('./routes/coupon')
+const { application } = require("express")
+
 
 //Variables de Entorno
 dotenv.config()
@@ -37,6 +40,7 @@ app.use((req,res,next)=>{
 app.use('/api/client', clientRoute)
 app.use('/api/admin', adminRoute)
 app.use('/api/product', productRoute)
+app.use('/api/coupon', couponRoute)
 
 app.listen(port, () => console.log("Ejecutando Api en el puerto", port))
 

@@ -14,6 +14,7 @@
     <div class="card box-shadow-sm" style="margin-left: 24px !important" *ngIf="load_data">
       <div class="card-header">
           <h5 style="margin-bottom: 0px;">Actualizar producto</h5>
+          <app-spinner></app-spinner>
       </div>
       
     </div>
@@ -22,7 +23,7 @@
       <div class="card box-shadow-sm" style="margin-left: 24px !important" *ngIf="product != undefined; else noEdit">
         <div class="card-header">
             <h5 style="margin-bottom: 0px;">Actualizar producto</h5>
-            <app-spinner></app-spinner>
+            
         </div>
         <div class="card-body">
           <div class="row">

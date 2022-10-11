@@ -18,6 +18,9 @@ export class InventoryProductsComponent implements OnInit {
   public token : any
   public idUser : any
 
+  public page = 1
+  public pageSize = 5
+
   public product : any = {}
   public inventory : Array<any> = []
   public inventoryUp : any = {}
@@ -45,11 +48,11 @@ export class InventoryProductsComponent implements OnInit {
             if(response.data == undefined){
               this.product = response.undefined           
             }else{  
-                    
+              
               this.product = response.data
               this._productService.listInventory_productAdmin(this.product._id, this.token).subscribe(
                 response => {
-                  this.inventory = response.data  
+                  this.inventory = response.data
                   this.load_data = false   
                 },
                 error => {

@@ -23,6 +23,9 @@ import { CreateProductsComponent } from './components/products/create-products/c
 import { IndexProductsComponent } from './components/products/index-products/index-products.component';
 import { EditProductsComponent } from './components/products/edit-products/edit-products.component';
 import { InventoryProductsComponent } from './components/products/inventory-products/inventory-products.component';
+import { CreateCouponComponent } from './components/coupons/create-coupon/create-coupon.component';
+import { IndexCouponComponent } from './components/coupons/index-coupon/index-coupon.component';
+import { EditCouponComponent } from './components/coupons/edit-coupon/edit-coupon.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { InventoryProductsComponent } from './components/products/inventory-prod
     CreateProductsComponent,
     IndexProductsComponent,
     EditProductsComponent,
-    InventoryProductsComponent
+    InventoryProductsComponent,
+    CreateCouponComponent,
+    IndexCouponComponent,
+    EditCouponComponent
   ],
   imports: [
     BrowserModule,

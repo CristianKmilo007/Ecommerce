@@ -15,7 +15,7 @@ declare const $:any
 })
 export class CreateProductsComponent implements OnInit {
 
-  public product:any = {}
+  public product:any = {laboratory:''}
   public file : any = undefined
   public imgSelect : any | ArrayBuffer = '../../../../assets/img/default.jpg'
   public load_btn = false

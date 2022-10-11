@@ -52,6 +52,9 @@ const listProducts_filterAdmin = async (req, res) => {
                 }else if(type == 'laboratory'){
                     let register = await Product.find({laboratory: new RegExp(filter, 'i')})
                     res.status(200).send({data:register})
+                }else if(type == 'laboratory' && type == 'title'){
+                    let register = await Product.find({laboratory: new RegExp(filter, 'i'), title: new RegExp(filter, 'i')})
+                    res.status(200).send({data:register})
                 }
             }
 

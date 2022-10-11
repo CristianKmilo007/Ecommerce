@@ -1,0 +1,121 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5" style="padding-left: 24px !important">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5" >Cupones</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo lista todos los cupones y descuentos de la tienda.</p>
+      <p class="font-size-sm font-weight-medium pl-md-4">
+        <a class="text-nowrap" [routerLink]="['/panel/coupons/register']">Crear cupon<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
+    </div>
+  </div>
+
+  <div class="card border-0">
+        <div class="card-header border border-white">
+            <h5 style="margin-bottom: -30px;">Filtro de cupones</h5>
+        </div>
+        <div class="card-header mb-5">
+            <form class="form-inline pt-2">
+                <label class="sr-only" for="inline-form-input-name">Codigo</label>
+                <input class="form-control col-lg-4 mb-3 mr-sm-4" (keyup)="filter('code')" name="filterCode" [(ngModel)]="filterCode"  type="text" id="inline-form-input-name" placeholder="Codigo de cupon">
+
+                <label class="sr-only" for="inline-form-input-name">Codigo</label>
+                <input class="form-control col-lg-4 mb-3 mr-sm-4" (keyup)="filter('type')" name="filterType" [(ngModel)]="filterType"  type="text" id="inline-form-input-name" placeholder="Tipo">
+                
+
+                <!-- Inline radio buttons -->
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" value="Porcentaje" type="radio" id="radio1" name="filterType" (click)="filter('type')" [(ngModel)]="filterType">
+                    <label class="form-check-label" for="inlineRadio1">Porcentaje</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" value="Valor fijo" type="radio" id="radio2" name="filterType" (click)="filter('type')" [(ngModel)]="filterType" checked>
+                    <label class="form-check-label" for="inlineRadio2">Valor fijo</label>
+                </div>
+                
+            </form>
+        </div>
+        <div class="card-body border border-white">
+        <div class="table-responsive shadow-sm p-3 bg-body rounded" style="padding-bottom: 7px !important">
+          <table class="table mb-0">
+            <thead >
+              <tr>
+                <th class="border-top-0">#</th>
+                <th class="border-top-0">Codigo</th>
+                <th class="border-top-0">Tipo</th>
+                <th class="border-top-0">Valor</th>
+                <th class="border-top-0">Limite</th>
+                <th class="border-top-0 text-center" >Opciones</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="load_data">
+              <tr>
+                <td>
+                  <app-spinner></app-spinner>
+                </td>
+              </tr>
+            </tbody>
+            <ng-container *ngIf="!load_data">
+              <tbody *ngFor="let item of coupons | slice: (page-1)*pageSize : (page-1) * pageSize + pageSize ; let indice = index">
+                <tr>
+                  <td>{{indice+1}}</td>
+                  <td>{{item.code}}</td>
+                  <td>{{item.type}}</td>
+                  <td>{{item.value}}</td>
+                  <td>{{item.limit}}</td>
+                  <td>
+                    <div class="d-flex justify-content-center">
+                      
+                      <i class="material-symbols-rounded mx-1" style="cursor: pointer" matTooltip="Editar cupon" matTooltipPosition="above" [routerLink]="['/panel/coupons', item._id]">
+                        edit_square
+                        </i>
+                        <i class="material-symbols-rounded ml-1" style="cursor: pointer; margin-top: 2.1px" matTooltip="Eliminar cupon" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
+                          delete
+                          </i>
+                    </div>
+                    <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
+                        <div class="modal-content" >
+                          <div class="modal-header">
+                            <h4 class="modal-title">Eliminar cupon</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <p class="mb-0">Codigo: &nbsp;&nbsp;   <b> {{item.code}}</b><br>
+                              Limite: &nbsp;&nbsp;  <b> {{item.limit}}</b>
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
+                            <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="button" (click)="delete(item._id)">Eliminar</button>
+                            <button *ngIf="load_btn" type="button" class="btn btn-primary" disabled>
+                              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                              Eliminando...
+                          </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </ng-container>
+          </table>
+          
+        </div>
+        </div>
+        <div class="card-footer border border-0">
+
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="coupons.length"
+          >
+            <ng-template ngbPaginationPrevious>Prev</ng-template>
+            <ng-template ngbPaginationNext>Next</ng-template>
+            <span class="current"></span>
+          </ngb-pagination>
+        </div>
+
+  </div>
+
+

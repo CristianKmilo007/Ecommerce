@@ -64,7 +64,7 @@
                     <tbody *ngFor="let item of inventory; let indice = index">
                       <tr>
                         <td>{{indice+1}}</td>
-                        <td>{{item.admin.names}}</td>
+                        <td>{{item.admin.names.split(' ')[0]}} {{item.admin.lastnames.split(' ')[0]}}</td>
                         <td class="text-center">{{item.stock}}</td>
                         <td>{{item.supplier}}</td>
                         <td class="text-center">{{item.createdAt | date: 'dd / MM / yyyy'}}</td>
@@ -107,15 +107,15 @@
               </div>
               <div class="card-footer border border-0">
   
-                <!--<ngb-pagination
+                <ngb-pagination
                   [(page)]="page"
                   [pageSize]="pageSize"
-                  [collectionSize]="products.length"
+                  [collectionSize]="inventory.length"
                 >
                   <ng-template ngbPaginationPrevious>Prev</ng-template>
                   <ng-template ngbPaginationNext>Next</ng-template>
                   <span class="current"></span>
-                </ngb-pagination>-->
+                </ngb-pagination>
               </div>
           
           </div>
