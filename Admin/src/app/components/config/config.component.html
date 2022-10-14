@@ -1,0 +1,132 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Configuraciones</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo establece las configuraciones de la tineda.</p>
+
+    </div>
+  </div>
+
+<form #configForm="ngForm" (ngSubmit)="update(configForm)">
+    <div class="card box-shadow-sm">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Configuraciones</h5>
+        </div>
+
+        <div class="card-body">
+          <div style="max-width: 48rem;">
+            <div class="form-group row align-items-center">
+              <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Nombre de la tienda</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="text-input" required placeholder="Nombre de la tienda" name="nameBusiness" [(ngModel)]="config.nameBusiness">
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Facturación</label>
+              <div class="col-md-4">
+                <input class="form-control" type="number" required id="text-input" name="serie" [(ngModel)]="config.serie">
+              </div>
+              <div class="col-md-5">
+                <input class="form-control" type="number" required id="text-input" name="correlative" [(ngModel)]="config.correlative">
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Laboratorio</label>
+              <div class="col-md-8">
+                <input class="form-control" type="text" id="text-input" placeholder="Nombre del laboratorio" name="nameLab" [(ngModel)]="nameLab">
+       
+              </div>
+              <div class="col-md-1 pl-0 d-flex justify-content-start">
+                <i class="material-symbols-rounded mx-1" style="cursor: pointer" matTooltip="Agregar laboratorio" matTooltipPosition="above" (click)="add_nameLab()">
+                    add_circle
+                    </i>
+              </div>
+              <div class="col-md-3">
+
+              </div>
+
+              <div class="col-md-9 mt-4">
+                
+                <div class="table-responsive p-3 bg-body border rounded" style="padding-bottom: 7px !important; padding-top: 4px !important">
+                  <table class="table mb-0" *ngIf="config.laboratories">
+                    <thead>
+                      <tr>
+                 
+                        <th class="border-top-0">Laboratorios</th>
+                        <th class="border-top-0"></th>
+                       
+                      </tr>
+                    </thead>
+                    <ng-container *ngIf="config.laboratories.length == 0">
+                        <tbody>
+                            <tr>
+                              <td class="text-center" colspan="2">
+                                <span class="text-muted">No existe ningun laboratorio</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                    </ng-container>
+                    <ng-container *ngIf="config.laboratories.length >= 1">
+                        <tbody *ngFor="let item of config.laboratories; let indice = index">
+                            <tr>
+                              <td class="py-1 pl-5 border-top-0"> {{item.laboratory}}</td>
+                              <td class="py-1 d-flex flex-column align-items-center border-top-0">
+                                <i class="material-symbols-rounded" style="cursor: pointer;" matTooltip="Eliminar laboratorio" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+indice" >
+                                  delete
+                                  </i>
+
+                                  <div class="modal fade" id="delete-{{indice}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
+                                      <div class="modal-content" >
+                                        <div class="modal-header">
+                                          <h4 class="modal-title">Eliminar laboratorio</h4>
+                                          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p class="mb-0">¿Desea eliminar este laboratorio? {{item.laboratory}}<br>
+                                            
+                                          </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
+                                          <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="button" (click)="delete(indice)" >Eliminar</button>
+                                          <button *ngIf="load_btn" type="button" class="btn btn-primary" disabled>
+                                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                            Eliminando...
+                                        </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                    </ng-container>
+                  </table>
+                </div>
+              </div>
+             
+            </div>
+            <div class="form-group row align-items-start">
+              <label class="col-md-3 col-form-label font-weight-medium" for="file-input">Logo</label>
+              <div class="col-md-9">
+                <div class="cs-file-drop-area">
+                    <div class="cs-file-drop-preview img-thumbnail rounded">
+                        <img [src]="imgSelect" alt="">
+                    </div>
+                    <span class="cs-file-drop-message">Arrastre una imagen</span>
+                    <input type="file" class="cs-file-drop-input" (change)="fileChangeEvent($event)">
+                    <button type="button" class="cs-file-drop-btn btn btn-outline-primary btn-sm">Subir imagen</button>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+         
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <button class="btn btn-primary mr-3" type="submit">Guardar cambios</button>
+        </div>
+  </div>    
+</form>

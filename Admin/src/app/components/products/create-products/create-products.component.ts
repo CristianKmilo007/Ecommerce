@@ -16,6 +16,8 @@ declare const $:any
 export class CreateProductsComponent implements OnInit {
 
   public product:any = {laboratory:''}
+  public config: any = {}
+
   public file : any = undefined
   public imgSelect : any | ArrayBuffer = '../../../../assets/img/default.jpg'
   public load_btn = false
@@ -28,6 +30,17 @@ export class CreateProductsComponent implements OnInit {
     private _router : Router
   ) { 
     this.token = this._adminService.getToken()
+
+    this._adminService.getConfig_Public().subscribe(
+      response => {
+        this.config = response.data
+        
+      },
+      error => {
+        console.log(error);
+        
+      }
+    )
   }
 
   ngOnInit(): void {

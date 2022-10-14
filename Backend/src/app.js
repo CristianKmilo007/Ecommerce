@@ -11,6 +11,8 @@ const clientRoute = require('./routes/client')
 const adminRoute = require('./routes/admin')
 const productRoute = require('./routes/product')
 const couponRoute = require('./routes/coupon')
+const configRoute = require('./routes/config')
+
 const { application } = require("express")
 
 
@@ -41,6 +43,7 @@ app.use('/api/client', clientRoute)
 app.use('/api/admin', adminRoute)
 app.use('/api/product', productRoute)
 app.use('/api/coupon', couponRoute)
+app.use('/api/config', configRoute)
 
 app.listen(port, () => console.log("Ejecutando Api en el puerto", port))
 

@@ -28,7 +28,7 @@ const listCoupon_filterAdmin = async (req, res) => {
             let filter = req.params['filter']
         
             if(type == null || type == 'null'){
-                let register = await Coupon.find()
+                let register = await Coupon.find().sort({createdAt: -1})
                 res.status(200).send({data:register})
             }else{
                 if(type == 'code'){

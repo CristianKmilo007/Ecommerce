@@ -16,6 +16,8 @@ declare const $:any
 export class EditProductsComponent implements OnInit {
 
   public product : any = {}
+  public config : any = {}
+
   public imgSelect : any | ArrayBuffer
   public load_btn = false
   public id:any
@@ -32,6 +34,17 @@ export class EditProductsComponent implements OnInit {
   ) { 
     this.token = this._adminService.getToken()
     this.URI_PRODUCT_BACKEND = GLOBAL.uriProduct
+
+    this._adminService.getConfig_Public().subscribe(
+      response => {
+        this.config = response.data
+        
+      },
+      error => {
+        console.log(error);
+        
+      }
+    )
   }
 
   ngOnInit(): void {

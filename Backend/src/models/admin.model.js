@@ -10,6 +10,7 @@ const adminSchema = new Schema(
         phone: {type: String, required: true},
         rol: {type: String, required: true},
         identification: {type: String, required: true},
+        createdAt: {type: Date, default: Date.now, required: true}
     },
     {
         timestamps: true,

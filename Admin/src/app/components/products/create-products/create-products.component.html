@@ -34,9 +34,8 @@
                           <label for="">Laboratorio</label>
                           <select class="form-control custom-select" placeholder="Seleccionar" id="select-input" required name="laboratory" [(ngModel)]="product.laboratory">
                             <option value="" selected hidden>Seleccionar...</option>
-                            <option value="Bioquifar">Laboratorio 1</option>
-                            <option value="Anglopharma">Laboratorio 2</option>
-                            <option value="Coaspharma">Laboratorio 3</option>
+                            <option value="{{item.laboratory}}" *ngFor="let item of config.laboratories">{{item.laboratory}}</option>
+                            
                           </select>
                       </div>
                       

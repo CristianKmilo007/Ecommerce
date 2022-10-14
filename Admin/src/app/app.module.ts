@@ -26,6 +26,7 @@ import { InventoryProductsComponent } from './components/products/inventory-prod
 import { CreateCouponComponent } from './components/coupons/create-coupon/create-coupon.component';
 import { IndexCouponComponent } from './components/coupons/index-coupon/index-coupon.component';
 import { EditCouponComponent } from './components/coupons/edit-coupon/edit-coupon.component';
+import { ConfigComponent } from './components/config/config.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { EditCouponComponent } from './components/coupons/edit-coupon/edit-coupo
     InventoryProductsComponent,
     CreateCouponComponent,
     IndexCouponComponent,
-    EditCouponComponent
+    EditCouponComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
