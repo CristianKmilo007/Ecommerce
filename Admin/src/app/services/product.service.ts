@@ -82,4 +82,9 @@ export class ProductService {
     return this._http.post(`${this.URI_PRODUCT_BACKEND}/registerInventory_productAdmin`, data, {headers:headers})
   }
 
+  updateVariety_productAdmin(data:any, id:any, token:any):Observable<any>{    
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.put(`${this.URI_PRODUCT_BACKEND}/updateVariety_productAdmin/${id}`, data, {headers:headers})
+  }
+
 }

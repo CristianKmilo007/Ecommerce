@@ -1,0 +1,129 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo crea las variedades de un producto.</p>
+      <p class="font-size-sm font-weight-medium pl-md-4">
+        <a class="text-nowrap" [routerLink]="['/panel/products']">Regresar<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
+    </div>
+  </div>
+
+
+    <div class="card box-shadow-sm">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Variedad del producto</h5>
+        </div>
+
+        <div class="card-body">
+          <div style="max-width: 48rem;">
+
+            <div class="row mb-5">
+              <div class="col-md-5">
+                <img [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+product.image" class="" alt="Square image">
+              </div>
+              <div class="col-md-6 pl-4 ml-4" style="border-left: 3px solid #dee2e6 !important;">
+                <div class="" style="height: 100% !important;">
+              
+                    <h3>{{product.title}}</h3>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row align-items-center">
+                <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Nombre de la variedad</label>
+                <div class="col-md-9">
+                  <input class="form-control" type="text" id="text-input" required placeholder="Nombre de la variedad" name="titleVariety" [(ngModel)]="product.titleVariety">
+                </div>
+              </div>
+            
+            <div class="form-group row align-items-center">
+              <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Variedad</label>
+              <div class="col-md-8">
+                <input class="form-control" type="text" id="text-input" placeholder="Nueva variedad" name="newVariety" [(ngModel)]="newVariety" >
+       
+              </div>
+              <div class="col-md-1 pl-0 d-flex justify-content-start">
+                <i class="material-symbols-rounded mx-1" style="cursor: pointer" matTooltip="Agregar variedad" matTooltipPosition="above" (click)="add_newVariety()">
+                    add_circle
+                    </i>
+              </div>
+              <div class="col-md-3">
+
+              </div>
+
+              <div class="col-md-9 mt-4">
+                
+                <div class="table-responsive p-3 bg-body border rounded" style="padding-bottom: 7px !important; padding-top: 4px !important">
+                  <table class="table mb-0" *ngIf="product.varieties">
+                    <thead>
+                      <tr>
+                 
+                        <th class="border-top-0">Variedades</th>
+                        <th class="border-top-0"></th>
+                       
+                      </tr>
+                    </thead>
+                    <ng-container *ngIf="product.varieties.length == 0">
+                        <tbody>
+                            <tr>
+                              <td class="text-center" colspan="2">
+                                <span class="text-muted">No existe ninguna variedad</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                    </ng-container>
+                    <ng-container *ngIf="product.varieties.length >= 1">
+                        <tbody *ngFor="let item of product.varieties; let indice = index">
+                            <tr>
+                              <td class="py-1 pl-5 border-top-0"> {{item.titleVariety}}</td>
+                              <td class="py-1 d-flex flex-column align-items-center border-top-0">
+                                <i class="material-symbols-rounded" style="cursor: pointer;" matTooltip="Eliminar variedad" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+indice" >
+                                  delete
+                                  </i>
+
+                                  <div class="modal fade" id="delete-{{indice}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
+                                      <div class="modal-content" >
+                                        <div class="modal-header">
+                                          <h4 class="modal-title">Eliminar variedad</h4>
+                                          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p class="mb-0">¿Desea eliminar esta variedad del producto? {{item.titleVariety}}<br>
+                                            
+                                          </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
+                                          <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="button" (click)="delete(indice)" >Eliminar</button>
+                                          <button *ngIf="load_btn" type="button" class="btn btn-primary" disabled>
+                                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                            Eliminando...
+                                        </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                    </ng-container>
+                  </table>
+                </div>
+              </div>
+             
+            </div>
+            
+          </div>
+         
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <button *ngIf="!load_btn" class="btn btn-primary mr-3" type="button" (click)="update()">Guardar cambios</button>
+          <button *ngIf="load_btn" type="button" class="btn btn-primary mr-3" disabled>
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Guardando...
+        </button>
+        </div>
+  </div>    

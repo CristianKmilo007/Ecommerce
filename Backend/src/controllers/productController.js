@@ -248,6 +248,27 @@ const registerInventory_productAdmin = async (req, res) => {
     }
 }
 
+const updateVariety_productAdmin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+
+            let id = req.params['id']
+            let data = req.body
+
+            let reg = await Product.findByIdAndUpdate({_id:id}, {
+                varieties: data.varieties,
+                titleVariety: data.titleVariety,
+            })
+            res.status(200).send({data:reg})
+
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
 module.exports = {
     registerProduct_Admin,
     listProducts_filterAdmin,
@@ -257,5 +278,6 @@ module.exports = {
     updateProduct_Admin,
     listInventory_productAdmin,
     deleteInventory_productAdmin,
-    registerInventory_productAdmin
+    registerInventory_productAdmin,
+    updateVariety_productAdmin
 }

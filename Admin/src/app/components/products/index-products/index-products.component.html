@@ -25,7 +25,7 @@
             </form>
         </div>
         <div class="card-body border border-white">
-        <div class="table-responsive shadow-sm p-3 bg-body rounded" style="padding-bottom: 7px !important">
+        <div class="table-responsive shadow-sm p-3 bg-body rounded" style="padding-bottom: 7px !important; width: 120% !important;">
           <table class="table mb-0">
             <thead >
               <tr>
@@ -57,16 +57,19 @@
                   <td>
                 
                     <div class="d-flex justify-content-center">
-                      <i class="material-symbols-rounded mr-1" style="cursor: pointer; margin-top: 3.1px;" matTooltip="Informacion del producto" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#information-'+item._id">
+                      <i class="material-symbols-rounded " style="cursor: pointer; margin-top: 3.1px; margin-right: 2px;" matTooltip="Informacion del producto" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#information-'+item._id">
                         feed
                         </i>
-                      <i class="material-symbols-rounded mx-1" style="cursor: pointer" matTooltip="Editar producto" matTooltipPosition="above" [routerLink]="['/panel/products', item._id]">
+                      <i class="material-symbols-rounded " style="cursor: pointer; margin-right: 3px; margin-left: 3px;" matTooltip="Editar producto" matTooltipPosition="above" [routerLink]="['/panel/products', item._id]">
                         edit_square
                         </i>
-                        <i class="material-symbols-rounded mx-1" style="cursor: pointer; margin-top: 2.1px" matTooltip="Ingresar cantidad" matTooltipPosition="above" [routerLink]="['/panel/products/inventory', item._id]">
+                        <i class="material-symbols-rounded " style="cursor: pointer; margin-top: 2.1px; margin-right: 3px; margin-left: 3px;" matTooltip="Variedad del producto" matTooltipPosition="above" [routerLink]="['/panel/products/variety', item._id]">
+                          format_list_bulleted_add
+                          </i>
+                        <i class="material-symbols-rounded" style="cursor: pointer; margin-top: 2.1px; margin-right: 2px; margin-left: 3px;" matTooltip="Ingresar cantidad" matTooltipPosition="above" [routerLink]="['/panel/products/inventory', item._id]">
                           inventory
                           </i>
-                        <i class="material-symbols-rounded ml-1" style="cursor: pointer; margin-top: 2.1px" matTooltip="Eliminar producto" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
+                        <i class="material-symbols-rounded " style="cursor: pointer; margin-top: 2.1px; margin-left: 3px;" matTooltip="Eliminar producto" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
                           delete
                           </i>
                     </div>

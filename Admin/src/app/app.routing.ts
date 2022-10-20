@@ -15,6 +15,7 @@ import { CreateCouponComponent } from "./components/coupons/create-coupon/create
 import { IndexCouponComponent } from "./components/coupons/index-coupon/index-coupon.component";
 import { EditCouponComponent } from "./components/coupons/edit-coupon/edit-coupon.component";
 import { ConfigComponent } from "./components/config/config.component";
+import { VarietyProductsComponent } from "./components/products/variety-products/variety-products.component";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'inicio', pathMatch: 'full'},
@@ -29,6 +30,7 @@ const appRoute : Routes = [
         {path: 'products', component: IndexProductsComponent, canActivate: [AdminGuard]},
         {path: 'products/:id', component: EditProductsComponent, canActivate: [AdminGuard]},
         {path: 'products/inventory/:id', component: InventoryProductsComponent, canActivate: [AdminGuard]},
+        {path: 'products/variety/:id', component: VarietyProductsComponent, canActivate: [AdminGuard]},
 
         {path: 'coupons/register', component: CreateCouponComponent, canActivate: [AdminGuard]},
         {path: 'coupons', component: IndexCouponComponent, canActivate: [AdminGuard]},
