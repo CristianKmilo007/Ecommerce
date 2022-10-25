@@ -87,4 +87,19 @@ export class ProductService {
     return this._http.put(`${this.URI_PRODUCT_BACKEND}/updateVariety_productAdmin/${id}`, data, {headers:headers})
   }
 
+  addImage_galleryAdmin(id:any, data:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'authorization':token})
+
+    const fd = new FormData()
+    fd.append('_id', data._id)
+    fd.append('image', data.image)
+
+    return this._http.put(`${this.URI_PRODUCT_BACKEND}/addImage_galleryAdmin/${id}`, fd, {headers:headers})
+  }
+
+  deleteImage_galleryAdmin(id:any, data:any, token:any):Observable<any>{    
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.put(`${this.URI_PRODUCT_BACKEND}/deleteImage_galleryAdmin/${id}`, data, {headers:headers})
+  }
+
 }

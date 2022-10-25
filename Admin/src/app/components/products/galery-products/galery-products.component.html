@@ -1,0 +1,148 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo añade las imagenes de un producto.</p>
+      <p class="font-size-sm font-weight-medium pl-md-4">
+        <a class="text-nowrap" [routerLink]="['/panel/products']">Regresar<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
+    </div>
+  </div>
+
+
+    <div class="card box-shadow-sm" >
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Galeria del producto</h5>
+        </div>
+
+        <div class="card-body">
+          <div style="max-width: 70rem;">
+
+            <div class="row mb-5">
+              <div class="col-md-5">
+                <img [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+product.image" class="" alt="Square image">
+              </div>
+              <div class="col-md-6 pl-4 ml-4" style="border-left: 3px solid #dee2e6 !important;">
+                <div class="" style="height: 100% !important;">
+              
+                    <h3>{{product.title}}</h3>
+                  
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="form-group row align-items-start">
+              <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Nueva imagen</label>
+              
+              <div class="col-md-9 mb-4">
+                <div class="form-group row align-items-start">
+                    <div class="col-md-12">
+                      <div class="cs-file-drop-area">
+                          <div class="cs-file-drop-preview">
+                              <img [src]="imgSelect" alt="">
+                          </div>
+                          <span class="cs-file-drop-message">Arrastre una imagen</span>
+                          <input type="file" id="input-img" class="cs-file-drop-input" (change)="fileChangeEvent($event)">
+                          <ng-container *ngIf="file != undefined">
+                            <button type="button" class="cs-file-drop-btn btn btn-outline-primary btn-sm" (click)="add_newImage()">Añadir a galeria</button>
+                          </ng-container>
+                          <ng-container *ngIf="file == undefined">
+                            <button type="button" disabled class="cs-file-drop-btn btn btn-outline-primary btn-sm">Añadir a galeria</button>
+                          </ng-container>
+                        </div>
+                    </div>
+                    
+                  </div>
+              </div>
+              
+              <div class="col-md-3">
+                <p  class="p-2">Galeria</p>
+              </div>
+
+              <div class="col-md-9">
+                
+                <div class="table-responsive p-2 bg-body  rounded" style="padding-bottom: 7px !important;">
+            <!--      <table class="table mb-0" *ngIf="product.gallery">
+                    <thead>
+                      <tr>
+                 
+                        <th class="border-top-0">Galeria</th>
+                        <th class="border-top-0"></th>
+                       
+                      </tr>
+                    </thead>
+                    <ng-container *ngIf="product.gallery.length == 0">
+                        <tbody>
+                            <tr>
+                              <td class="text-center" colspan="2">
+                                <span class="text-muted">No existe ninguna imagen</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                    </ng-container>
+                    <ng-container *ngIf="product.gallery.length >= 1">
+                        <tbody *ngFor="let item of product.gallery; let indice = index">
+                            <tr>
+                              <p>
+                                <img [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+item.image" class="" alt="Square image">
+                              </p>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+
+                  </table> -->
+
+
+                  <div id="gallery" class="card-containerg" >
+                    <div id="miniaturas"  *ngFor="let item of product.gallery; let indice = index">
+                      <div class="cardg">
+                        <img class="card-imageg" [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+item.image" alt="Square image">
+                        <div class="card-bodyg ">
+                          <i class="material-symbols-rounded m-2 rounded-circle p-1" style="cursor: pointer; background-color: #ffffff; "  data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >
+                            delete
+                            </i>
+                        </div>
+                        <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" id="delete1" role="document" style="height: 100vh; padding: 0px; margin: 0px auto;">
+                            <div class="modal-content" >
+                              <div class="modal-header">
+                                <h4 class="modal-title">Eliminar imagen</h4>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                              </div>
+                              <div class="modal-body">
+                                <p class="mb-0">¿Desea eliminar esta imagem?
+                                </p>
+                              </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-secondary " type="button" data-dismiss="modal">Cancelar</button>
+                                <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="button" (click)="delete(item._id)">Eliminar</button>
+                                <button *ngIf="load_btn" type="button" class="btn btn-primary" disabled>
+                                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                  Eliminando...
+                              </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+             
+            </div>
+            
+          </div>
+         
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <button *ngIf="!load_btn" class="btn btn-primary mr-3" type="button">Guardar cambios</button>
+          <button *ngIf="load_btn" type="button" class="btn btn-primary mr-3" disabled>
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Guardando...
+        </button>
+        </div>
+  </div>    
+

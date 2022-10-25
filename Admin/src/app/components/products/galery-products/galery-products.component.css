@@ -1,0 +1,54 @@
+.material-symbols-rounded {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' -25,
+    'opsz' 40
+  }
+
+.card-containerg{
+  width: 100%;
+  columns: 3 170px !important;
+  column-gap: 0.6em;
+  height: auto;
+}
+
+.cardg{
+  position: relative;
+  height: auto;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.card-imageg{
+  width: 100%;
+  height: 100%;
+  transition: all 500ms !important;
+}
+
+.card-bodyg{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background:  rgba(0, 0, 0, 0.185) ;
+  transition: all 300ms ease-out;
+  opacity: 0;
+  visibility: hidden;
+  text-align: right;
+
+}
+
+.cardg:hover > .card-bodyg{
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+
+
+
+
+

@@ -8,6 +8,7 @@ const registerProduct_Admin = async (req, res) => {
         if(req.user.role == 'Admin'){
 
             let data = req.body
+
             let imgPath = req.files.image.path
             let name = imgPath.split('\\')
             let nameImg = name[3]
@@ -269,6 +270,59 @@ const updateVariety_productAdmin = async (req, res) => {
     }
 }
 
+const addImage_galleryAdmin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+
+            let id = req.params['id']
+            let data = req.body
+
+            let imgPath = req.files.image.path
+            let name = imgPath.split('\\')
+            let nameImg = name[3]
+
+            let reg = await Product.findByIdAndUpdate({_id:id},{$push:{gallery:{
+                image : nameImg,
+                _id : data._id
+            }}})
+
+            res.status(200).send({data:reg})
+
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const deleteImage_galleryAdmin = async (req, res) => {
+    if(req.user){
+        if(req.user.role == 'Admin'){
+
+            let id = req.params['id']
+            let data = req.body
+
+            let reg = await Product.findByIdAndUpdate({_id:id},{$pull: {gallery: {_id: data._id}}})
+
+            fs.stat('./src/uploads/products/'+reg.gallery, (err)=>{
+                if(!err){
+                    fs.unlink('./src/uploads/products/'+reg.gallery, (err)=>{
+                        if(err) throw err
+                    })
+                }
+            })
+
+            res.status(200).send({data:reg})
+
+        }else{
+            res.status(500).send({message: 'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
 module.exports = {
     registerProduct_Admin,
     listProducts_filterAdmin,
@@ -279,5 +333,7 @@ module.exports = {
     listInventory_productAdmin,
     deleteInventory_productAdmin,
     registerInventory_productAdmin,
-    updateVariety_productAdmin
+    updateVariety_productAdmin,
+    addImage_galleryAdmin,
+    deleteImage_galleryAdmin
 }

@@ -14,6 +14,8 @@ router.get('/getFrontPage/:img', productController.getFrontPage)
 router.get('/getProduct_Admin/:id', auth.auth, productController.getProduct_Admin)
 router.put('/updateProduct_Admin/:id', [auth.auth, path], productController.updateProduct_Admin)
 router.put('/updateVariety_productAdmin/:id', auth.auth, productController.updateVariety_productAdmin)
+router.put('/addImage_galleryAdmin/:id', [auth.auth, path], productController.addImage_galleryAdmin) 
+router.put('/deleteImage_galleryAdmin/:id', [auth.auth, path], productController.deleteImage_galleryAdmin)
 
 router.get('/listInventory_productAdmin/:id', auth.auth, productController.listInventory_productAdmin)
 router.delete('/deleteInventory_productAdmin/:id', auth.auth, productController.deleteInventory_productAdmin)

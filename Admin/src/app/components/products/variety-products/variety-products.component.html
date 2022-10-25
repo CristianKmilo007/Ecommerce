@@ -62,13 +62,14 @@
                  
                         <th class="border-top-0">Variedades</th>
                         <th class="border-top-0"></th>
+                        <th class="border-top-0"></th>
                        
                       </tr>
                     </thead>
                     <ng-container *ngIf="product.varieties.length == 0">
                         <tbody>
                             <tr>
-                              <td class="text-center" colspan="2">
+                              <td class="text-center" colspan="3">
                                 <span class="text-muted">No existe ninguna variedad</span>
                               </td>
                             </tr>
@@ -78,6 +79,7 @@
                         <tbody *ngFor="let item of product.varieties; let indice = index">
                             <tr>
                               <td class="py-1 pl-5 border-top-0"> {{item.titleVariety}}</td>
+                              <td class="py-1 pl-5 border-top-0"> {{product.titleVariety}}</td>
                               <td class="py-1 d-flex flex-column align-items-center border-top-0">
                                 <i class="material-symbols-rounded" style="cursor: pointer;" matTooltip="Eliminar variedad" matTooltipPosition="above" data-toggle="modal" [attr.data-target]="'#delete-'+indice" >
                                   delete
@@ -91,7 +93,7 @@
                                           <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
                                         </div>
                                         <div class="modal-body">
-                                          <p class="mb-0">¿Desea eliminar esta variedad del producto? {{item.titleVariety}}<br>
+                                          <p class="mb-0 pl-4"> <b>{{item.titleVariety}}</b> {{product.titleVariety}}<br>
                                             
                                           </p>
                                         </div>
