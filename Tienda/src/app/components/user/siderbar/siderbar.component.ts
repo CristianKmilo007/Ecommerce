@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-siderbar',
+  templateUrl: './siderbar.component.html',
+  styleUrls: ['./siderbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class SiderbarComponent implements OnInit {
 
-  public token:any
-  public id:any
+  public token : any
+  public id : any
+
   public user : any = undefined
-  public user_lc : any = undefined
+  public user_lc : any = {}
 
   constructor(
-    private _clientService : ClientService,
-    private _router : Router
-  ) {
+    private _clientService : ClientService
+  ) { 
     this.token = localStorage.getItem('token')
     this.id = localStorage.getItem('_id')
 
@@ -41,12 +40,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  logout(){
-    window.location.reload()
-    localStorage.clear()
-    this._router.navigate(['/'])
   }
 
 }

@@ -10,13 +10,19 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { SiderbarComponent } from './components/user/siderbar/siderbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    ProfileComponent,
+    SiderbarComponent
   ],
   imports: [
     BrowserModule,

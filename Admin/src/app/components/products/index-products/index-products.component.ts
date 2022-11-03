@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import { ProductService } from 'src/app/services/product.service';
+import { Workbook } from "exceljs";
+
+const fs = require('file-saver')
+
 
 declare const iziToast: any
 declare const jQuery:any
@@ -15,6 +19,7 @@ declare const $:any
 export class IndexProductsComponent implements OnInit {
 
   public products : Array<any> = []
+  public arr_products : Array<any> = []
 
   public filterTitle = ''
   public filterLaboratory = ''
@@ -45,6 +50,14 @@ export class IndexProductsComponent implements OnInit {
     this._productService.listProducts_filterAdmin(null, null, this.token).subscribe(
       (response:any)=>{
         this.products = response.data
+        this.products.forEach(element => {
+          this.arr_products.push({
+            title: element.title,
+            stock: element.stock,
+            price: element.price,
+            laboratory: element.laboratory
+          })
+        })
         this.load_data = false
       },
       (error)=>{
@@ -113,6 +126,36 @@ export class IndexProductsComponent implements OnInit {
       }
       
     )
+  }
+
+  download_excel(){
+    let workbook = new Workbook();
+    let worksheet = workbook.addWorksheet("Reporte de productos");
+
+    worksheet.addRow(undefined);
+    for (let x1 of this.arr_products){
+      let x2=Object.keys(x1);
+
+      let temp=[]
+      for(let y of x2){
+        temp.push(x1[y])
+      }
+      worksheet.addRow(temp)
+    }
+
+    let fname='InventarioDP';
+
+    worksheet.columns = [
+      { header: 'Producto', key: 'col1', width: 30},
+      { header: 'Stock', key: 'col2', width: 15},
+      { header: 'Precio', key: 'col3', width: 15},
+      { header: 'Laboratoio', key: 'col4', width: 25}
+    ]as any;
+
+    workbook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      fs.saveAs(blob, fname.valueOf()+'.xlsx');
+    });
   }
 
 }

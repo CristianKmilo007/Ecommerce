@@ -15,12 +15,21 @@
         </div>
         <div class="card-header mb-5">
             <form class="form-inline pt-2">
-                <label class="sr-only" for="inline-form-input-name">Title</label>
-                <input class="form-control mb-3 mr-sm-4" (keyup)="filter('title')" name="filterTitle" [(ngModel)]="filterTitle" type="text" id="inline-form-input-name" placeholder="Nombre">
-                <label class="sr-only" for="inline-form-input-name">Laboratory</label>
-                <input class="form-control mb-3 mr-sm-4" (keyup)="filter('laboratory')" name="filterLaboratory" [(ngModel)]="filterLaboratory" type="text" id="inline-form-input-name" placeholder="Laboratorio">
+                <label class="sr-only " for="inline-form-input-name">Title</label>
+                <input class="form-control mb-3 mr-sm-4 col-md-4" (keyup)="filter('title')" name="filterTitle" [(ngModel)]="filterTitle" type="text" id="inline-form-input-name" placeholder="Nombre">
+                <label class="sr-only " for="inline-form-input-name">Laboratory</label>
+                <input class="form-control mb-3 mr-sm-4 col-md-4" (keyup)="filter('laboratory')" name="filterLaboratory" [(ngModel)]="filterLaboratory" type="text" id="inline-form-input-name" placeholder="Laboratorio">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 text-right ml-2 p-0">
+                  <i class="material-symbols-outlined" style="cursor: pointer; margin-right: 2px; margin-left: 3px; font-size: 30px;" matTooltip="Exportar inventario" matTooltipPosition="above" (click)="download_excel()">
+                    download
+                    </i>
+                  <i class="material-symbols-outlined ml-3 " style="cursor: pointer; margin-left: 3px; font-size: 30px;" matTooltip="Importar inventario" matTooltipPosition="above" >
+                    upload
+                    </i>
+                </div>
                 
-            
+              
                 
             </form>
         </div>

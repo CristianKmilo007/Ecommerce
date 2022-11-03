@@ -185,6 +185,64 @@ const deleteClient_Admin = async (req, res) => {
     }
 }
 
+const getClient_Public = async (req, res) => {
+    if(req.user){
+
+        let id = req.params['id']
+            
+        try {
+
+            let reg = await Client.findById({_id:id})
+            res.status(200).send({data:reg})
+
+        } catch (error) {
+            res.status(200).send({data:undefined})
+        }
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const updateProfile_clientPublic = async (req, res) => {
+    if(req.user){
+
+        let id = req.params['id']
+        let data = req.body
+        
+        if(data.password){  
+            bcrypt.hash(data.password, null, null, async (err, hash) => {
+                let reg = await Client.findByIdAndUpdate({_id:id},{
+                    names: data.names,
+                    lastnames: data.lastnames,
+                    phone: data.phone,
+                    identification: data.identification,
+                    city: data.city,
+                    country: data.country,
+                    password: hash,
+                    direction: data.direction
+                })
+                res.status(200).send({data:reg})
+            })
+            
+       }else{
+            let reg = await Client.findByIdAndUpdate({_id:id},{
+                names: data.names,
+                lastnames: data.lastnames,
+                phone: data.phone,
+                identification: data.identification,
+                city: data.city,
+                country: data.country,
+                direction: data.direction
+            })
+       }
+        
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
 
 module.exports = {
    registerClient,
@@ -193,5 +251,7 @@ module.exports = {
    registerClient_Admin,
    getClient_Admin,
    updateClient_Admin,
-   deleteClient_Admin
+   deleteClient_Admin,
+   getClient_Public,
+   updateProfile_clientPublic
 }

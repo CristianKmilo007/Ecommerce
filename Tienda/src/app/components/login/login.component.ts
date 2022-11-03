@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin.service';
+import { ClientService } from 'src/app/services/client.service';
 
-declare const jQuery:any
-declare const $:any
 declare const iziToast:any
 
 @Component({
@@ -14,32 +11,24 @@ declare const iziToast:any
 })
 export class LoginComponent implements OnInit {
 
-  public user: any = {}
+  public user:any = {}
   public usuario: any = {}
-  public token: any = ''
-
-
+  public token:any
 
   constructor(
-
-    private _adminService: AdminService,
-    private _router: Router
-
+    private _clientService : ClientService,
+    private _router : Router
   ) {
-
-    this.token = this._adminService.getToken()
-
-  }
-
-  ngOnInit(): void {
-
+    this.token = localStorage.getItem('token')
     if(this.token){
       this._router.navigate(['/'])
     }
+   }
 
+  ngOnInit(): void {
   }
 
-  login(loginForm: NgForm){
+  login(loginForm:any){
     if(loginForm.valid){
 
       let data = {
@@ -47,7 +36,7 @@ export class LoginComponent implements OnInit {
         password: this.user.password
       }
 
-      this._adminService.loginAdmin(data).subscribe(
+      this._clientService.loginClient(data).subscribe(
         response => {
           if(response.data == undefined){
             iziToast.error({
@@ -57,21 +46,21 @@ export class LoginComponent implements OnInit {
               message: response.message,
               progressBar: false,
               transitionIn: 'bounceInLeft',
-              transitionOut: 'fadeOutRight'
-              
+              transitionOut: 'fadeOutRight'    
             })
           }else{
             this.usuario = response.data
             localStorage.setItem('token', response.token)
             localStorage.setItem('_id', response.data._id)
+
             this._router.navigate(['/'])
           }
         },
         error => {
-          console.log(error)
+
         }
       )
-    
+
     }else{
       iziToast.error({
         title: 'ERROR',

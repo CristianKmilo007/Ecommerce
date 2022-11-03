@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+
+<main  class="cs-page-wrapper">
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']" ><i class="cxi-home"></i></a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
+          </ol>
+        </div>
+      </nav>
+
+      <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+        <div class="row pb-2 pb-lg-0">
+
+          <!-- Account menu (sticky sidebar) -->
+          <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+            <app-siderbar></app-siderbar>
+        </aside>
+          
+
+          <!-- Content -->
+          <div class="col-lg-8 ml-auto">
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-1 pb-sm-3">
+              <h1 class="h2 mb-0">Mi perfil</h1>
+            </div>
+            <form #updateForm="ngForm" (ngSubmit)="update(updateForm)" >
+              <div class="row pb-3">
+                <div class="col-sm-6 form-group">
+                  <label for="ac-fn">Nombres</label>
+                  <input type="text" required class="form-control form-control-lg" placeholder="Ingresar los nombres" name="names" [(ngModel)]="user.names">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="ac-fn">Apellidos</label>
+                  <input type="text" required class="form-control form-control-lg" placeholder="Ingresar los apellidos" name="lastnames" [(ngModel)]="user.lastnames">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="ac-fn">NIT</label>
+                  <input type="text" required class="form-control form-control-lg" placeholder="Ingresar NIT" name="identification" [(ngModel)]="user.identification">
+                </div>
+                
+                <div class="col-sm-6 form-group">
+                  <label for="ac-phone">Telefono</label>
+                  <input type="text" required class="form-control form-control-lg" placeholder="Ingresar telefono" name="phone" [(ngModel)]="user.phone">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="ac-email">Correo electronico</label>
+                  <input type="email" required class="form-control form-control-lg" readonly value="{{user.email}}">
+                </div>
+                
+                <div class="col-sm-6 form-group">
+                  <label for="ac-country">Pais</label>
+                  <select class="custom-select custom-select-lg" name="country" [(ngModel)]="user.country">
+                    <option value="" disabled selected>Seleccionar pais</option>
+                    <option value="argentina">Australia</option>
+                    <option value="brazil">Brazil</option>
+                    <option value="belgium">Belgium</option>
+                    <option value="france">France</option>
+                    <option value="germany">Germany</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="usa" selected>USA</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="ac-city">Ciudad</label>
+                  <select id="ac-city" class="custom-select custom-select-lg" name="city" [(ngModel)]="user.city">
+                    <option value="" disabled selected>Seleccionar ciudad</option>
+                    <option value="belgium">Brussels</option>
+                    <option value="germany">Berlin</option>
+                    <option value="uk">London</option>
+                    <option value="argentina">Melbourne</option>
+                    <option value="usa" selected>New Jersey</option>
+                    <option value="france">Paris</option>
+                    <option value="brazil">Rio de Janeiro</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="ac-address">Direccion</label>
+                  <input type="text" class="form-control form-control-lg" placeholder="Ingresar nueva direccion" name="direction" [(ngModel)]="user.direction">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="ac-password">Nueva contraseña</label>
+                  <div class="cs-password-toggle input-group-overlay">
+                    <input type="password" autocomplete="new-password" class="form-control form-control-lg" placeholder="Ingresar nueva contraseña" id="input_password">
+                    <div class="input-group-append-overlay">
+                      <label class="btn cs-password-toggle-btn input-group-text">
+                        <input type="checkbox" class="custom-control-input">
+                        <i class="cxi-eye cs-password-toggle-indicator"></i>
+                        <span class="sr-only">Show password</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="ac-password-confirm">Confirm Password</label>
+                  <div class="cs-password-toggle input-group-overlay">
+                    <input type="password" id="ac-password-confirm" class="form-control form-control-lg">
+                    <div class="input-group-append-overlay">
+                      <label class="btn cs-password-toggle-btn input-group-text">
+                        <input type="checkbox" class="custom-control-input">
+                        <i class="cxi-eye cs-password-toggle-indicator"></i>
+                        <span class="sr-only">Show password</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg">&nbsp;Actualizar perfil&nbsp;</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+</main>
+
+<app-footer></app-footer>

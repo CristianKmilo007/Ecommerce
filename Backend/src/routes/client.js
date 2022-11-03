@@ -13,6 +13,8 @@ router.post('/registerClient_Admin', auth.auth, clientController.registerClient_
 router.get('/getClient_Admin/:id', auth.auth, clientController.getClient_Admin)
 router.put('/updateClient_Admin/:id', auth.auth, clientController.updateClient_Admin)
 router.delete('/deleteClient_Admin/:id', auth.auth, clientController.deleteClient_Admin)
+router.get('/getClient_Public/:id', auth.auth, clientController.getClient_Public)
+router.put('/updateProfile_clientPublic/:id', auth.auth, clientController.updateProfile_clientPublic)
 
 
 module.exports = router
