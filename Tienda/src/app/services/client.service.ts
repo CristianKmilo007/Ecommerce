@@ -11,11 +11,15 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class ClientService {
 
   public URI_CLIENT_BACKEND
+  public URI_CONFIG_BACKEND
+  public URI_PRODUCT_BACKEND
 
   constructor(
     private _http: HttpClient
   ) { 
     this.URI_CLIENT_BACKEND = GLOBAL.uriClient
+    this.URI_CONFIG_BACKEND = GLOBAL.uriConfig
+    this.URI_PRODUCT_BACKEND = GLOBAL.uriProduct
   }
 
   loginClient(data:any):Observable<any>{
@@ -60,6 +64,16 @@ export class ClientService {
     }
  
     return true
+  }
+
+  getConfig_Public():Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    return this._http.get(`${this.URI_CONFIG_BACKEND}/getConfig_Public`, {headers:headers})
+  }
+
+  listProducts_filterPublic(filter:any):Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    return this._http.get(`${this.URI_PRODUCT_BACKEND}/listProducts_filterPublic/${filter}`, {headers:headers})
   }
 
   

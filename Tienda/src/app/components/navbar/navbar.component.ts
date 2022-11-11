@@ -13,6 +13,10 @@ export class NavbarComponent implements OnInit {
   public id:any
   public user : any = undefined
   public user_lc : any = undefined
+  public config: any = {}
+
+  public products : Array <any> = []
+  public filter_product = ''
 
   constructor(
     private _clientService : ClientService,
@@ -20,6 +24,23 @@ export class NavbarComponent implements OnInit {
   ) {
     this.token = localStorage.getItem('token')
     this.id = localStorage.getItem('_id')
+
+    this._clientService.getConfig_Public().subscribe(
+      response => {
+        this.config = response.data
+        
+      },
+      error => {
+        console.log(error);
+        
+      }
+    )
+
+    this._clientService.listProducts_filterPublic(this.filter_product).subscribe(
+      response => {
+        this.products = response.data
+      }
+    )
 
     if(this.token){
       this._clientService.getClient_Public(this.id, this.token).subscribe(
@@ -47,6 +68,14 @@ export class NavbarComponent implements OnInit {
     window.location.reload()
     localStorage.clear()
     this._router.navigate(['/'])
+  }
+
+  search_product(){
+    this._clientService.listProducts_filterPublic(this.filter_product).subscribe(
+      response => {
+        this.products = response.data
+      }
+    )
   }
 
 }

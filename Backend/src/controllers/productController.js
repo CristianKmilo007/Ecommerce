@@ -323,6 +323,16 @@ const deleteImage_galleryAdmin = async (req, res) => {
     }
 }
 
+
+const listProducts_filterPublic = async (req, res) => {
+
+    let filter = req.params['filter']
+
+    let reg = await Product.find({title: new RegExp(filter, 'i')})
+    res.status(200).send({data:reg})
+
+}
+
 module.exports = {
     registerProduct_Admin,
     listProducts_filterAdmin,
@@ -335,5 +345,6 @@ module.exports = {
     registerInventory_productAdmin,
     updateVariety_productAdmin,
     addImage_galleryAdmin,
-    deleteImage_galleryAdmin
+    deleteImage_galleryAdmin,
+    listProducts_filterPublic
 }
