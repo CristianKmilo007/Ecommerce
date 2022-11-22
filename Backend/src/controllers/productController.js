@@ -328,7 +328,25 @@ const listProducts_filterPublic = async (req, res) => {
 
     let filter = req.params['filter']
 
-    let reg = await Product.find({title: new RegExp(filter, 'i')})
+    let reg = await Product.find({title: new RegExp(filter, 'i')}).sort({createdAt: -1})
+    res.status(200).send({data:reg})
+
+}
+
+const getProducts_slugPublic = async (req, res) => {
+    
+    let slug = req.params['slug']
+
+    let reg = await Product.findOne({slug: slug})
+    res.status(200).send({data: reg})
+
+}
+
+const listProducts_recomendedPublic = async (req, res) => {
+
+    let laboratory = req.params['laboratory']
+
+    let reg = await Product.find({laboratory: laboratory}).sort({createdAt: -1}).limit(8)
     res.status(200).send({data:reg})
 
 }
@@ -346,5 +364,7 @@ module.exports = {
     updateVariety_productAdmin,
     addImage_galleryAdmin,
     deleteImage_galleryAdmin,
-    listProducts_filterPublic
+    listProducts_filterPublic,
+    getProducts_slugPublic,
+    listProducts_recomendedPublic
 }

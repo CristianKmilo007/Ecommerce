@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { iif } from 'rxjs';
 import { ClientService } from 'src/app/services/client.service';
 import { GLOBAL } from 'src/app/services/GLOBAL';
+import { io } from 'socket.io-client'
 
 declare const noUiSlider : any
 declare const jQuery:any
 declare const $:any
+declare const iziToast : any
 
 @Component({
   selector: 'app-index-products',
@@ -26,14 +28,27 @@ export class IndexProductsComponent implements OnInit {
   public pageSize = 45
   public sort_by = 'Defecto'
 
+  public cart_data : any = {
+    variety: '',
+    stock: 2
+  }
+
+  public token : any
+
+  public load_btn = false
+
   public URI_PRODUCT_BACKEND
 
   public route_laboratory : any
+
+  public socket = io('http://localhost:5000')
 
   constructor(
     private _clientService : ClientService,
     private _route : ActivatedRoute
   ) {
+
+    this.token = localStorage.getItem('token')
 
     this.URI_PRODUCT_BACKEND = GLOBAL.uriProduct
   
@@ -236,6 +251,64 @@ export class IndexProductsComponent implements OnInit {
           return -1
         }
         return 0
+      })
+    }
+  }
+
+  addProduct(product:any){
+    if (this.cart_data.stock <= product.stock) {
+      let data = {
+        product : product._id,
+        client : localStorage.getItem('_id'),
+        stock: 1,
+        variety: product.varieties[0].titleVariety
+      }
+      
+      this.load_btn = true
+      this._clientService.addCart_client(data, this.token).subscribe(
+        response => {
+          if (response.data == undefined) {
+            iziToast.error({
+              title: 'ERROR',
+              timeout: 3000,
+              position: 'topRight',
+              message: `El producto ya existe en el carrito`,
+              progressBar: false,
+              transitionIn: 'bounceInLeft',
+              transitionOut: 'fadeOutRight'
+              
+            })
+            this.load_btn = false
+          } else {
+            iziToast.success({
+              title: 'OK',
+              timeout: 3000,
+              position: 'topRight',
+              message: 'Se agrego el producto al carrito',
+              progressBar: false,
+              transitionIn: 'bounceInLeft',
+              transitionOut: 'fadeOutRight'
+            })
+            this.socket.emit('addCart_client', {data:true})
+            this.load_btn = false
+          }
+        },
+        error => {
+
+        }
+          
+      )
+      
+    }else{
+      iziToast.error({
+        title: 'ERROR',
+        timeout: 3000,
+        position: 'topRight',
+        message: `Solo hay ${product.stock} unidades en stock`,
+        progressBar: false,
+        transitionIn: 'bounceInLeft',
+        transitionOut: 'fadeOutRight'
+        
       })
     }
   }

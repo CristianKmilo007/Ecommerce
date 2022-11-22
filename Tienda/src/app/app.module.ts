@@ -22,6 +22,7 @@ import { SiderbarComponent } from './components/user/siderbar/siderbar.component
 import { IndexProductsComponent } from './components/products/index-products/index-products.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ShowProductComponent } from './components/products/show-product/show-product.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ShowProductComponent } from './components/products/show-product/show-pr
     SiderbarComponent,
     IndexProductsComponent,
     SpinnerComponent,
-    ShowProductComponent
+    ShowProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

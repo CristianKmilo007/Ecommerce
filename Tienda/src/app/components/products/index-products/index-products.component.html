@@ -186,7 +186,7 @@
                         </div>
                         <div class="row mt-3">
                           <div class="col-12">
-                            <button class="btn btn-primary btn-sm btn-block" (click)="search_prices()">Filtrar</button>
+                            <button class="btn btn-gradient btn-hover-shadow btn-sm btn-block" (click)="search_prices()">Filtrar</button>
                           </div>
                         </div>
                       </div>
@@ -210,7 +210,7 @@
               </div>
             </div>
 
-            <div *ngIf="!load_data" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" data-filters-columns>
+            <div *ngIf="!load_data" class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" data-filters-columns>
 
               <!-- Item -->
               <ng-container *ngIf="products.length == 0">
@@ -231,11 +231,11 @@
                 <div class="col pb-sm-2 px-2 mb-grid-gutter" *ngFor="let item of products | slice: (page-1)*pageSize : (page-1) * pageSize + pageSize">
                   <div class="card card-product px-3 mx-auto h-100 box-shadow" style="border-radius: 8px">
                     <div class="card-product-img" >
-                      <a  class="card-img-top d-flex justify-content-center" >
+                      <a [routerLink]="['/products/', item.slug]" class="card-img-top d-flex justify-content-center" >
                         <img [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+item.image" alt="Product image" style="height: 180px; object-fit: contain; object-position: 50% 50% !important;">
                       </a>
                       <div class="card-product-widgets-top pr-1">
-                        <div class="star-rating ml-auto">
+                        <div class="star-rating ml-auto" >
                           <i class="sr-star cxi-star-filled active"></i>
                           <i class="sr-star cxi-star-filled active"></i>
                           <i class="sr-star cxi-star-filled active"></i>
@@ -249,10 +249,10 @@
                     </div>
                     <div class="card-body px-0">
                       <h3 class="card-product-title  mb-3">
-                        <a class="nav-link" style="font-size: 18px;">{{item.title}}</a>
+                        <a [routerLink]="['/products/', item.slug]" class="nav-link" style="font-size: 18px;">{{item.title}}</a>
                       </h3>
                       <div class="d-flex align-items-center">
-                        <span class="h6 d-inline-block mb-0">{{item.price}}</span>
+                        <span class="h6 d-inline-block mb-0" style="color: #EC4A41;">$ {{item.price}}</span>
                       </div>
                     </div>
                     <div class="card-footer" style="border-radius: 8px; top: 96%;">
@@ -264,9 +264,13 @@
                         </div>
                         
                       </div>
-                      <button type="button" class="btn btn-primary btn-sm btn-block">
+                      <button *ngIf="!load_btn" type="button" class="btn btn-gradient btn-sm btn-block btn-hover-shadow" style="cursor: pointer;" (click)="addProduct(item)" >
                         <i class="cxi-cart align-middle mt-n1 mr-2"></i>
-                        Add to cart
+                        Agregar al carrito
+                      </button>
+                      <button *ngIf="load_btn" type="button" class="btn btn-block btn-primary" disabled>
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Agregando...
                       </button>
                     </div>
                   </div>
@@ -317,6 +321,8 @@
         </div>
       </section>
 </main>
+
+<app-footer></app-footer>
 
 
 

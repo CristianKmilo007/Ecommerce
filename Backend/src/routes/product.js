@@ -22,5 +22,7 @@ router.delete('/deleteInventory_productAdmin/:id', auth.auth, productController.
 router.post('/registerInventory_productAdmin', auth.auth, productController.registerInventory_productAdmin)
 
 router.get('/listProducts_filterPublic/:filter?', productController.listProducts_filterPublic)
+router.get('/getProducts_slugPublic/:slug', productController.getProducts_slugPublic)
+router.get('/listProducts_recomendedPublic/:laboratory', productController.listProducts_recomendedPublic)
 
 module.exports = router

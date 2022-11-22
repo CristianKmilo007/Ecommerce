@@ -12,3 +12,8 @@ img{
     0 0.5rem 0.625rem rgb(154 156 165 / 4%), 
     0 0.25rem 0.25rem rgb(30 33 44 / 3%) !important;
 }
+
+.cs-filter-search:focus{ /*Estilos input al hacer clic*/
+    
+    outline-color: #70b231 !important; /*Cambiar el color de los bordes*/ 
+}
