@@ -1,4 +1,5 @@
 const Client = require('../models/client.model')
+const Address = require('../models/adress.model')
 const bcrypt = require('bcrypt-nodejs')
 const jwt = require('../helpers/jwt')
 
@@ -243,6 +244,82 @@ const updateProfile_clientPublic = async (req, res) => {
     }
 }
 
+const registerAddress_Client = async (req, res) => {
+    if(req.user){
+        
+        let data = req.body
+
+        if (data.main) {
+            let address = await Address.find({client: data.client})
+
+            address.forEach(async element => {
+                await Address.findByIdAndUpdate({_id:element._id}, {main: false})
+            })
+        }
+
+        let reg = await Address.create(data)
+        res.status(200).send({data:reg})
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const getAddress_Client = async (req, res) => {
+    if(req.user){
+        let id = req.params['id']
+        let address = await Address.find({client: id}).populate('client').sort({createdAt: -1})
+
+        res.status(200).send({data:address})
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const changeMain_addressClient = async (req, res) => {
+    if(req.user){
+        
+        let id = req.params['id']
+        let client = req.params['client']
+
+        let address = await Address.find({client:client})
+
+        address.forEach(async element => {
+            await Address.findByIdAndUpdate({_id:element._id}, {main: false})
+        })
+
+        await Address.findByIdAndUpdate({_id:id},{main: true})
+
+        res.status(200).send({data:true})
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+const getMain_addressClient = async (req, res) => {
+    if(req.user){
+        
+        let id = req.params['id']
+        let address = undefined
+
+        address = await Address.findOne({client:id, main: true})
+
+        if (address == undefined) {
+            res.status(200).send({data:undefined})
+        }else{
+            res.status(200).send({data:address})
+        }
+
+        
+        
+    }else{
+        res.status(500).send({message: 'NoAccess'})
+    }
+}
+
+
 
 module.exports = {
    registerClient,
@@ -253,5 +330,9 @@ module.exports = {
    updateClient_Admin,
    deleteClient_Admin,
    getClient_Public,
-   updateProfile_clientPublic
+   updateProfile_clientPublic,
+   registerAddress_Client,
+   getAddress_Client,
+   changeMain_addressClient,
+   getMain_addressClient
 }

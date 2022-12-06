@@ -1,0 +1,134 @@
+<app-navbar></app-navbar>
+
+<main  class="cs-page-wrapper">
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']" ><i class="cxi-home"></i></a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Mis direcciones</li>
+          </ol>
+        </div>
+      </nav>
+
+      <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+        <div class="row pb-2 pb-lg-0">
+
+          <!-- Account menu (sticky sidebar) -->
+          <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+            <app-siderbar></app-siderbar>
+        </aside>
+          
+
+          <!-- Content -->
+          <div class="col-lg-8 ml-auto">
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-1 pb-sm-3">
+              <h1 class="h2 mb-0">Nueva direccion</h1>
+            </div>
+
+            <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="mb-5" >
+                <div class="row pb-3">
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">Destinatario</label>
+                    <input type="text" required class="form-control form-control-lg" placeholder="Ingresar los nombres del destinatario" name="addressee" [(ngModel)]="address.addressee" >
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">NIT</label>
+                    <input type="text" required class="form-control form-control-lg" placeholder="Ingresar el NIT" name="identification" [(ngModel)]="address.identification" >
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">Telefono</label>
+                    <input type="text" required class="form-control form-control-lg" placeholder="Ingresar el nuemro celular" name="phone" [(ngModel)]="address.phone" >
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">Codigo Postal</label>
+                    <input type="text" required class="form-control form-control-lg" placeholder="Ingresar el codigo postal" name="zip" [(ngModel)]="address.zip" >
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">Direccion</label>
+                    <input type="text" required class="form-control form-control-lg" placeholder="Ingresar la direccion" name="address" [(ngModel)]="address.address" >
+                  </div>
+                  
+
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">Pais</label>
+                    <select name="country" required [(ngModel)]="address.country" class="custom-select custom-select-lg" (change)="select_pais()">
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="Colombia">Colombia</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">Departamento</label>
+                    <select id="sl-state" name="state"  [(ngModel)]="address.state" class="custom-select custom-select-lg" disabled="" (change)="select_state()">
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="{{item.id}}" *ngFor="let item of getDep_cities">{{item.state}}</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-6 form-group">
+                    <label for="ac-fn">Ciudad</label>
+                    <select id="sl-city" name="city"  [(ngModel)]="address.city" class="custom-select custom-select-lg" disabled="">
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="{{item}}" *ngFor="let item of get_cities">{{item}}</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-12 form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="ex-check-1" name="main" [(ngModel)]="address.main">
+                        <label class="custom-control-label text-muted" for="ex-check-1">Dirreccion principal</label>
+                      </div>
+                  </div>
+                 
+                </div>
+  
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;Crear direccion&nbsp;</button>
+                </div>
+              </form>
+
+              <div class="d-flex align-items-center justify-content-between mb-4 pb-1 pb-sm-3">
+                <h2 class=" mb-3">Mis direcciones</h2>
+              </div>
+
+              <div class="row" *ngIf="!load_data">
+                <div class="col-12" *ngIf="getAddress_arr.length >= 1">
+                  <div class="row py-4 border-bottom" *ngFor="let item of getAddress_arr">
+                    <div class="col-md-4 col-sm-4 pl-lg-5 mb-sm-0 mb-3">
+                      <h3 class="mb-2  fs-lg">{{item.addressee}}</h3>
+                      
+                      <a class="badge bg-primary px-3 py-1 text-white"  *ngIf="item.main">Direccion&nbsp; principal</a>
+                      <a class="badge bg-secondary px-3 py-1 text-dark" style="cursor: pointer;" (click)="changeMain(item._id)" *ngIf="!item.main">Establecer&nbsp; como&nbsp; principal</a>
+                    </div>
+                    <div class="col-md-4 col-sm-4 pl-4">
+                      <p class="mb-3 mt-2">{{item.address}}</p>
+                      <p class="mb-3">{{item.state}} / {{item.city}}</p>
+                      <p class="mb-2">{{item.zip}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="getAddress_arr.length == 0">
+                  <div class="d-flex justify-content-center mb-4 w-100">
+                    <img src="./../../../../assets/img/mapa.png" alt="No encontrado" style="width: 4.5rem;">
+                  </div>                  
+                  <h4 class="mb-2 pb-lg-3 text-center">No hay direcciones establecidas</h4>                  
+                </div>
+              </div>
+
+              <div class="row" *ngIf="load_data">
+                <div class="col-12 text-center">
+                  <app-spinner></app-spinner>
+                </div>
+              </div>
+
+            
+          </div>
+        </div>
+      </section>
+
+</main>
+
+<app-footer></app-footer>
+

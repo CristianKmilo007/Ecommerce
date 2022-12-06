@@ -93,6 +93,7 @@ export class NavbarComponent implements OnInit {
     this._clientService.getCart_client(this.user_lc._id, this.token).subscribe(
       response => {
         this.cartMod = response.data
+        this.subtotal = 0
         this.calcCart()
       }
     )

@@ -1,0 +1,12 @@
+[
+    {
+        "method": "A drogueria (envio gratis)",
+        "time": "Llega el mismo dia (solo aplica para la ciudad de Villavicencio, para pueblos cercanos puede tardar 1 dia)",
+        "price": 0
+    },
+    {
+        "method": "Recoger en Distripharmacias del Llano",
+        "time": "Lunes a viernes de 8am a 12pm y de 2pm a 6pm,  sabados de 8am a 1pm",
+        "price": 0
+    }
+]

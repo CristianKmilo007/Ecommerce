@@ -23,6 +23,7 @@ import { IndexProductsComponent } from './components/products/index-products/ind
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ShowProductComponent } from './components/products/show-product/show-product.component';
 import { CartComponent } from './components/cart/cart.component';
+import { AddressComponent } from './components/user/address/address.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CartComponent } from './components/cart/cart.component';
     IndexProductsComponent,
     SpinnerComponent,
     ShowProductComponent,
-    CartComponent
+    CartComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

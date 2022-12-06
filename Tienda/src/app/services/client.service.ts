@@ -103,6 +103,39 @@ export class ClientService {
     return this._http.delete(`${this.URI_CART_BACKEND}/deleteCart_client/${id}`, {headers:headers})
   }
   
+  registerAddress_Client(data:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.post(`${this.URI_CLIENT_BACKEND}/registerAddress_Client`, data, {headers:headers})
+  }
+
+  getDep_cities():Observable<any>{
+    return this._http.get('./assets/colombia.json')
+  }
+
+  getAddress_Client(id:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.get(`${this.URI_CLIENT_BACKEND}/getAddress_Client/${id}`, {headers:headers})
+  }
+
+  changeMain_addressClient(id:any, client:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.put(`${this.URI_CLIENT_BACKEND}/changeMain_addressClient/${id}/${client}`, {data:true}, {headers:headers})
+  }
+
+  getMain_addressClient(id:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.get(`${this.URI_CLIENT_BACKEND}/getMain_addressClient/${id}`, {headers:headers})
+  }
+
+  getshipping():Observable<any>{
+    return this._http.get('./assets/envios.json')
+  }
+
+
+
+
+  
+
   
 
 }
