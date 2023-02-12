@@ -24,5 +24,8 @@ router.post('/registerInventory_productAdmin', auth.auth, productController.regi
 router.get('/listProducts_filterPublic/:filter?', productController.listProducts_filterPublic)
 router.get('/getProducts_slugPublic/:slug', productController.getProducts_slugPublic)
 router.get('/listProducts_recomendedPublic/:laboratory', productController.listProducts_recomendedPublic)
+router.get('/listProducts_newsPublic', productController.listProducts_newsPublic)
+router.get('/listProducts_mostSelledPublic', productController.listProducts_mostSelledPublic)
+
 
 module.exports = router

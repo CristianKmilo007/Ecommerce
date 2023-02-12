@@ -1,0 +1,75 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5" style="padding-left: 24px !important">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Descuentos</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo crea todos los descuentos de la tienda.</p>
+      <p class="font-size-sm font-weight-medium pl-md-4">
+        <a class="text-nowrap" [routerLink]="['/panel/discounts']">Regresar<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a></p>
+    </div>
+  </div>
+
+<form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+    <div class="card box-shadow-sm" style="margin-left: 24px !important">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Registro de descuento</h5>
+        </div>
+        <div class="card-body">
+              <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                      <div class="col-lg-12 form-group">	
+                          <label for="">Nombre del descuento</label>
+                          <input type="text" class="form-control" placeholder="Nombre del descuento" required name="title" [(ngModel)]="discount.title">
+                      </div>
+                      <!-- <div class="col-lg-6 form-group">	
+                        <label for="">Laboratorio</label>
+                        <select class="form-control custom-select" placeholder="Seleccionar" id="select-input" required name="laboratory" [(ngModel)]="discount.laboratory">
+                          <option value="" selected hidden>Seleccionar...</option>
+                          <option value="{{item.laboratory}}" *ngFor="let item of config.laboratories">{{item.laboratory}}</option>
+                          
+                        </select>
+                    </div> -->
+                      <div class="col-lg-6 form-group">	
+                          <label for="">Valor Dto %</label>
+                          <input type="number" class="form-control" placeholder="Valor del descuento" required name="discount" [(ngModel)]="discount.discount">
+                      </div>
+                      <div class="col-lg-6 form-group">	
+                          <label for="">Fecha de inicio</label>
+                          <input type="date" class="form-control" required name="dateInit" [(ngModel)]="discount.dateInit">
+                      </div>
+                      <div class="col-lg-6 form-group">	
+                        <label for="">Fecha de expiracion</label>
+                        <input type="date" class="form-control"  required name="dateFinish" [(ngModel)]="discount.dateFinish">
+                    </div>
+                      
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="row">
+                    <div class="col-lg-12 form-group">	
+                        <label for="">Banner</label>
+                        <div class="custom-file">
+                          <input class="custom-file-input" type="file" id="file-input" (change)="fileChangeEvent($event)">
+                          <label class="custom-file-label" id="input-frontPage" for="file-input" style="white-space:nowrap; overflow: hidden;">Seleccionar banner</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <img [src]="imgSelect" class="img-thumbnail" alt="Rounded image">
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <button *ngIf="!load_btn" class="btn btn-primary" type="submit" >Actualizar descuento</button>
+          <button *ngIf="load_btn" type="button" class="btn btn-primary" disabled>
+              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Actualizando...
+          </button>
+      </div>
+  </div>
+</form>
+
+

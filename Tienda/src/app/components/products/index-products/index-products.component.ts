@@ -22,6 +22,7 @@ export class IndexProductsComponent implements OnInit {
   public products : Array <any> = []
   public filter_product = ''
   public filterLab_products = 'todos'
+  public discount_active : any = undefined
 
   public load_data = true
   public page = 1
@@ -111,6 +112,19 @@ export class IndexProductsComponent implements OnInit {
         $('.cs-range-slider-value-max').val(values[1]);
     });
     $('.noUi-tooltip').css('font-size','11px');
+
+    this._clientService.getDiscount_Active().subscribe(
+      response => {
+
+        if(response.data != undefined){
+          this.discount_active = response.data[0]
+          console.log(this.discount_active);
+        }else{
+          this.discount_active = undefined
+        }
+        
+      }
+    )
 
   }
 

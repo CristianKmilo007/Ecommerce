@@ -28,6 +28,8 @@ const productRoute = require('./routes/product')
 const couponRoute = require('./routes/coupon')
 const configRoute = require('./routes/config')
 const cartRoute = require('./routes/cart')
+const saleRoute = require('./routes/sale')
+const discountRoute = require('./routes/discount')
 
 const { application } = require("express")
 
@@ -61,6 +63,8 @@ app.use('/api/product', productRoute)
 app.use('/api/coupon', couponRoute)
 app.use('/api/config', configRoute)
 app.use('/api/cart', cartRoute)
+app.use('/api/sale', saleRoute)
+app.use('/api/discount', discountRoute)
 
 server.listen(port, () => console.log("Ejecutando Api en el puerto", port))
 

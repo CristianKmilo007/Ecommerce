@@ -4,5 +4,7 @@ export const GLOBAL = {
     uriProduct: 'http://localhost:5000/api/product',
     uriCoupon: 'http://localhost:5000/api/coupon',
     uriConfig: 'http://localhost:5000/api/config',
-    uriCart: 'http://localhost:5000/api/cart'
+    uriCart: 'http://localhost:5000/api/cart',
+    uriSale: 'http://localhost:5000/api/sale',
+    uriDiscount: 'http://localhost:5000/api/discount'
 }

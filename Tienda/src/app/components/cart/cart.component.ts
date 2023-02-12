@@ -30,6 +30,7 @@ export class CartComponent implements OnInit {
   public cartMod : Array <any> = []
   public direccion_principal : any = {}
   public shipping : Array <any> = []
+  public discount_active : any = undefined
 
   public subtotal = 0
   public totalPag = 0
@@ -38,6 +39,9 @@ export class CartComponent implements OnInit {
   public URI_PRODUCT_BACKEND : any
 
   public socket = io('http://localhost:5000')
+
+  public sale : any = {}
+  public dsale : Array <any> = []
 
   constructor(
     private _clientService : ClientService
@@ -52,16 +56,14 @@ export class CartComponent implements OnInit {
       }
     )
 
-    this._clientService.getCart_client(this.idClient, this.token).subscribe(
-      response => {
-        this.cartMod = response.data
-        this.subtotal = 0
-        this.calcCart()
-      }
-    )
+    this.sale.client = this.idClient
+    
   }
 
   ngOnInit(): void {
+
+    this.initData()
+
     setTimeout(() => {
       new Cleave('#cc-number', {
         creditCard: true,
@@ -97,9 +99,18 @@ export class CartComponent implements OnInit {
           });
         
       },
-      onApprove : async (ddata:any,actions:any)=>{
+      onApprove : async (data:any,actions:any)=>{
         const order = await actions.order.capture();
-  
+        
+        this.sale.transaction = order.purchase_units[0].payments.captures[0].id
+        
+        this.sale.details = this.dsale
+        this._clientService.registerBuy_client(this.sale, this.token).subscribe(
+          response => {
+            console.log(response);
+            
+          }
+        )
         
       },
       onError : (err:any) =>{
@@ -109,13 +120,55 @@ export class CartComponent implements OnInit {
         
       }
     }).render(this.paypalElement.nativeElement);
+
+    this._clientService.getDiscount_Active().subscribe(
+      response => {
+
+        if(response.data != undefined){
+          this.discount_active = response.data[0]
+          console.log(this.discount_active);
+        }else{
+          this.discount_active = undefined
+        }
+        
+      }
+    )
+  }
+
+  initData(){
+    this._clientService.getCart_client(this.idClient, this.token).subscribe(
+      response => {
+        this.cartMod = response.data
+        this.subtotal = 0
+
+        this.cartMod.forEach(element => {
+          this.dsale.push({
+            product: element.product._id,
+            subtotal: element.product.price,
+            variety: element.variety,
+            stock: element.stock,
+            client: this.idClient
+          })
+        })
+
+        this.calcCart()
+        this.calc_total('A drogueria')
+      }
+    )
   }
 
   calcCart(){
-    this.cartMod.forEach(element => {
-      this.subtotal = this.subtotal + parseInt(element.product.price)
-    })
-    this.totalPag = this.subtotal
+    this.subtotal = 0
+    if(this.discount_active == undefined){
+      this.cartMod.forEach(element => {
+        this.subtotal = this.subtotal + parseInt(element.product.price)
+      })
+    }else if(this.discount_active != undefined){
+      this.cartMod.forEach(element => {
+        let newPrice = Math.round(parseInt(element.product.price) - (parseInt(element.product.price) * this.discount_active.discount) / 100)
+        this.subtotal = this.subtotal + newPrice
+      })
+    }
   }
 
   deleteItem(id:any){
@@ -150,14 +203,20 @@ export class CartComponent implements OnInit {
           this.direccion_principal = undefined
         } else {
           this.direccion_principal = response.data
+          this.sale.address = this.direccion_principal._id
         }
         
       }
     )
   }
 
-  calc_total(){
+  calc_total(title_shipping:any){
     this.totalPag = this.subtotal + this.price_shipping
+
+    this.sale.subtotal = this.totalPag
+    this.sale.shippingPrice = this.price_shipping
+    this.sale.shippingTitle = title_shipping
+    console.log(this.sale);
   }
 
 }

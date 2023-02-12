@@ -351,6 +351,20 @@ const listProducts_recomendedPublic = async (req, res) => {
 
 }
 
+const listProducts_newsPublic = async (req, res) => {
+
+    let reg = await Product.find().limit(8).sort({createdAt: -1})
+    res.status(200).send({data:reg})
+
+}
+
+const listProducts_mostSelledPublic = async (req, res) => {
+
+    let reg = await Product.find().limit(8).sort({sales: -1})
+    res.status(200).send({data:reg})
+
+}
+
 module.exports = {
     registerProduct_Admin,
     listProducts_filterAdmin,
@@ -366,5 +380,7 @@ module.exports = {
     deleteImage_galleryAdmin,
     listProducts_filterPublic,
     getProducts_slugPublic,
-    listProducts_recomendedPublic
+    listProducts_recomendedPublic,
+    listProducts_newsPublic,
+    listProducts_mostSelledPublic
 }

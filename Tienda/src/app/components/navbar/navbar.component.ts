@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   public user : any = undefined
   public user_lc : any = undefined
   public config: any = {}
+  public discount_active : any = undefined
 
   public products : Array <any> = []
   public cartMod : Array <any> = []
@@ -86,6 +87,19 @@ export class NavbarComponent implements OnInit {
     this.socket.on('add_newCart', (data:any)=>{
       this.getCart_client()
     })
+
+    this._clientService.getDiscount_Active().subscribe(
+      response => {
+
+        if(response.data != undefined){
+          this.discount_active = response.data[0]
+          console.log(this.discount_active);
+        }else{
+          this.discount_active = undefined
+        }
+        
+      }
+    )
     
   }
 
@@ -124,9 +138,17 @@ export class NavbarComponent implements OnInit {
   }
 
   calcCart(){
-    this.cartMod.forEach(element => {
-      this.subtotal = this.subtotal + parseInt(element.product.price)
-    })
+    this.subtotal = 0
+    if(this.discount_active == undefined){
+      this.cartMod.forEach(element => {
+        this.subtotal = this.subtotal + parseInt(element.product.price)
+      })
+    }else if(this.discount_active != undefined){
+      this.cartMod.forEach(element => {
+        let newPrice = Math.round(parseInt(element.product.price) - (parseInt(element.product.price) * this.discount_active.discount) / 100)
+        this.subtotal = this.subtotal + newPrice
+      })
+    }
   }
 
   deleteItem(id:any){

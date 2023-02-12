@@ -15,7 +15,9 @@ declare const $:any
 })
 export class CreateProductsComponent implements OnInit {
 
-  public product:any = {laboratory:''}
+  public product:any = {
+    laboratory:'',
+  }
   public config: any = {}
 
   public file : any = undefined

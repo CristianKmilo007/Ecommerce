@@ -1,3 +1,420 @@
 <app-navbar></app-navbar>
 
+<main class="cs-page-wrapper">
+    <section class="cs-carousel cs-controls-onhover">
+        <div class="cs-carousel-inner" data-carousel-options=''>
+    
+          <!-- Slide 1 -->
+          <!-- <div class="bg-size-cover py-xl-6" *ngIf="discount_active != undefined" style="background-image: url({{URI_DISCOUNT_BACKEND}}/getBanner_discount/{{discount_active.banner}});">
+            <div class="container pt-5 pb-6">
+              <div class="row pb-lg-6">
+                <div class="col-lg-6 offset-lg-1 offset-xl-0 pb-4 pb-md-6">
+                  <h1 class=" text-uppercase cs-from-left cs-delay-1">{{discount_active.discount}}%</h1>
+                  <h2 class="display-2 m-0 pb-3 cs-from-left">{{discount_active.title}}</h2>
+                  <h4 class="text-muted mb-5" style="font-size: 13px;">Valido hasta el {{discount_active.dateFinish | date: 'dd'}} de {{discount_active.dateFinish | date: 'MMMM'}}*</h4>
+                  <div class="mb-4 cs-scale-up cs-delay-2">
+                    <a [routerLink]="['/products']" class="btn btn-outline-primary btn-lg">Obtener descuento ahora</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+    
+          <!-- Slide 2 -->
+          <div class="bg-size-cover" style="background-image: url(../../../assets/img/1.jpg); height: 550px;">   
+          </div>
+    
+          <!-- Slide 3 -->
+          <div class="bg-size-cover py-xl-6" style="background-image: url(../../../assets/img/2.jpg); height: 550px;">
+          </div>
+    
+          <!-- Slide 4 -->
+          <div class="bg-size-cover py-xl-6" style="background-image: url(../../../assets/img/3.jpg); height: 550px;">   
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="bg-size-cover py-xl-6" style="background-image: url(../../../assets/img/4.jpg); height: 550px;">   
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="bg-size-cover py-xl-6" style="background-image: url(../../../assets/img/5.jpg); height: 550px;">   
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="bg-size-cover py-xl-6" style="background-image: url(../../../assets/img/6.jpg); height: 550px;">   
+          </div>
+
+          
+
+        </div>
+    
+        <!-- Pager -->
+        <div class="container position-relative">
+          <div class="row mt-lg-n5">
+            <div class="col-lg-7 col-md-8 col-sm-10 offset-lg-1 offset-xl-0">
+              <div class="position-relative">
+                <div id="pager" class="cs-pager cs-pager-inverse mb-xl-5 pb-5 pb-md-6" style="display: none;">
+                  <button type="button" data-nav="0">01</button>
+                  <button type="button" data-nav="1">02</button>
+                  <button type="button" data-nav="2">03</button>
+                  <button type="button" data-nav="3">04</button>
+                  <button type="button" data-nav="3">05</button>
+                  <button type="button" data-nav="3">06</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="container mt-4 pt-5 pt-lg-0">
+        <div class="cs-carousel cs-nav-outside">
+          <div class="cs-carousel-inner cs-carousel-inner-two" data-carousel-options=''>
+            <!-- Category -->
+            <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+              <div class="cs-image-inner mb-3 rounded" style="border-radius: 10px !important">
+                <img src="../../../assets/img/azc.jpg" alt="Women’s">
+              </div>
+              <h3 class="h5 mb-1">Alimentos</h3>
+            </a>
+
+            <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+              <div class="cs-image-inner mb-3 rounded" style="border-radius: 10px !important">
+                <img src="../../../assets/img/azc.jpg" alt="Women’s">
+              </div>
+              <h3 class="h5 mb-1">Suplementos</h3>
+            </a>
+
+            <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+              <div class="cs-image-inner mb-3 rounded" style="border-radius: 10px !important">
+                <img src="../../../assets/img/azc.jpg" alt="Women’s">
+              </div>
+              <h3 class="h5 mb-1">Fitoterapeuticos</h3>
+            </a>
+
+            <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+              <div class="cs-image-inner mb-3 rounded" style="border-radius: 10px !important">
+                <img src="../../../assets/img/azc.jpg" alt="Women’s">
+              </div>
+              <h3 class="h5 mb-1">Cosmeticos</h3>
+            </a>
+
+            <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+              <div class="cs-image-inner mb-3 rounded" style="border-radius: 10px !important">
+                <img src="../../../assets/img/azc.jpg" alt="Women’s">
+              </div>
+              <h3 class="h5 mb-1">Droga Blanca</h3>
+            </a>
+
+            <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+              <div class="cs-image-inner mb-3 rounded" style="border-radius: 10px !important">
+                <img src="../../../assets/img/azc.jpg" alt="Women’s">
+              </div>
+              <h3 class="h5 mb-1">Reactivos Diag.</h3>
+            </a>
+
+
+          </div>
+        </div>
+    </section>
+    
+
+    <!-- New arrivals -->
+    <section class="container-fluid px-xl-grid-gutter px-0 mt-5 mb-3 mb-sm-4 mt-md-0 mb-lg-5 py-5 py-lg-6 w-75">
+        <div class="text-center mb-5 pb-2">
+          <h2 class="h1">Nuevos productos</h2>
+          <p class="font-size-lg text-muted mb-1">
+            Echa un vistazo a nuestros últimos productos </p>
+          <a [routerLink]="['/products']" class="font-size-lg">Ver productos aquí</a>
+        </div>
+
+        <!-- Product carousel -->
+        <div class="cs-carousel cs-nav-outside">
+          <div class="cs-carousel-inner cs-carousel-inner-three" data-carousel-options='{
+            
+          }'>
+
+            <!-- Item -->
+            <div *ngFor="let item of newProducts">
+              <div class=" card card-product box-shadow my-5 " style="cursor: pointer; height: 80%; margin-left: 7px; margin-right: 7px; border-radius: 10px; overflow: hidden;">
+                <div class="card-product-img " >
+                  <a [routerLink]="['/products/', item.slug]" target="_blank" class="card-img-top" >
+                    <div class=" p-3 d-flex justify-content-center align-items-center scale" style="height: 230px; background-color: white;">
+          
+                        <img [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+item.image" alt="Product image" style=" object-fit: contain; object-position: 50% 50% !important; background-color: white;">
+          
+                      <div class="card-product-widgets-top">
+                        <div class="star-rating ml-auto">
+                          <i class="sr-star cxi-star-filled active"></i>
+                          <i class="sr-star cxi-star-filled active"></i>
+                          <i class="sr-star cxi-star-filled active"></i>
+                          <i class="sr-star cxi-star-filled active"></i>
+                          <i class="sr-star cxi-star-filled active"></i>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </a>
+                  <div class="card-product-widgets-bottom">
+                    <a [routerLink]="['/products/', item.slug]" target="_blank" class="btn-wishlist ml-auto" data-toggle="tooltip" data-placement="left" title="Add to wishlist"></a>
+                  </div>
+                </div>
+                <div class="card-body bg-0 py-2 h-25">
+                  <h3 class="card-product-title mb-2">
+                    <a [routerLink]="['/products/', item.slug]" target="_blank" class="nav-link">{{item.title}}</a>
+                  </h3>
+                  <div class="d-flex align-items-center" *ngIf="discount_active == undefined">
+                    <span class="h6 d-inline-block mb-0" style="color: #EC4A41;">$ {{item.price}}</span>
+                  </div>
+                  <div class="d-flex align-items-center" *ngIf="discount_active != undefined">
+                    <span class="h6 d-inline-block mb-0" style="color: #EC4A41;"> $ {{item.price | discount: discount_active.discount}}</span>
+                    <del class="d-inline-block ml-2 pl-1 text-muted"> $ {{item.price}}</del>
+                  </div>
+                </div>
+              </div>
+            </div>      
+
+ 
+          </div>
+        </div>
+    </section>
+
+     <!-- Trending products (carousel) -->
+    <section class="py-5" style="background-color: #e5e8ed;">
+        <div class="container my-lg-2 py-2 py-md-4">
+          <div class="d-flex align-items-center justify-content-between pb-sm-1 mb-5">
+            <h2 class="h1 mb-0">Productos mas vendidos</h2>
+            <div class="tns-custom-controls cs-controls-inverse" id="custom-controls-trending" tabindex="0">
+              <button type="button" data-controls="prev" tabindex="-1">
+                <i class="cxi-arrow-left"></i>
+              </button>
+              <button type="button" data-controls="next" tabindex="-1">
+                <i class="cxi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="cs-carousel pb-2">
+            <div class="cs-carousel-inner cs-carousel-inner-four" data-carousel-options='{
+              
+            }'>
+
+              <!-- Item -->
+              <div *ngFor="let item of salesProducts">
+                <div class=" card card-product my-5 mx-auto" style="cursor: pointer;">
+                  <div class="card-product-img " >
+                    <a [routerLink]="['/products/', item.slug]" target="_blank" class="card-img-top" >
+                      <div class="bg-white p-3 d-flex justify-content-center align-items-center scale" style="height: 220px; overflow: hidden; border-radius: 10px;">
+                        <img class="bg-white" [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+item.image" alt="Product image" style=" object-fit: contain; object-position: 50% 50% !important;">
+
+                        <div class="card-product-widgets-top">
+                          <div class="star-rating ml-auto">
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </a>
+                    <div class="card-product-widgets-bottom">
+                      <a [routerLink]="['/products/', item.slug]" target="_blank" class="btn-wishlist ml-auto" data-toggle="tooltip" data-placement="left" title="Add to wishlist"></a>
+                    </div>
+                  </div>
+                  <div class="card-body bg-0 pb-2 h-25">
+                    <h3 class="card-product-title mb-2">
+                      <a [routerLink]="['/products/', item.slug]" target="_blank" class="nav-link">{{item.title}}</a>
+                    </h3>
+                    <div class="d-flex align-items-center" *ngIf="discount_active == undefined">
+                      <span class="h6 d-inline-block mb-0" style="color: #EC4A41;">$ {{item.price}}</span>
+                    </div>
+                    <div class="d-flex align-items-center" *ngIf="discount_active != undefined">
+                      <span class="h6 d-inline-block mb-0" style="color: #EC4A41;"> $ {{item.price | discount: discount_active.discount}}</span>
+                      <del class="d-inline-block ml-2 pl-1 text-muted"> $ {{item.price}}</del>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="text-center pt-4 pt-md-5">
+            <a [routerLink]="['/products']" class="btn btn-outline-primary btn-lg">Explorar productos</a>
+          </div>
+        </div>
+    </section>
+
+    <!-- Popular categories -->
+    <section class="container mt-1 mb-3 my-sm-4 py-5 py-lg-6">
+        <h2 class="h1 mb-5 pb-3 text-center">Laboratorios populares</h2>
+        <div class="cs-carousel cs-nav-outside">
+          <div class="cs-carousel-inner cs-carousel-inner-five" data-carousel-options='{
+            
+          }'>
+
+            <!-- Category -->
+            <div class="pb-2">
+              <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+                <div class="cs-image-inner filter d-flex align-items-center mx-auto mb-4" style="max-width: 180px; height: 180px; filter: grayscale(1);">
+                  <img src=".././../../assets/img/logo-coaspharma-web-300x106.png" alt="Category image">
+                </div>
+                
+              </a>
+            </div>
+
+            <div class="pb-2">
+              <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+                <div class="cs-image-inner filter d-flex justify-content-center align-items-center mx-auto mb-4" style="max-width: 180px; height: 180px; filter: grayscale(1);">
+                  <img src=".././../../assets/img/nVlm3U-N_400x400.png" alt="Category image" class="w-75">
+                </div>
+                
+              </a>
+            </div>
+
+            <!-- Category -->
+            <div class="pb-2">
+              <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+                <div class="cs-image-inner filter d-flex justify-content-center align-items-center mx-auto mb-4" style="max-width: 180px; height: 180px; filter: grayscale(1);">
+                  <img src=".././../../assets/img/favico.png" alt="Category image" class="w-75">
+                </div>
+                
+              </a>
+            </div>
+
+            <!-- Category -->
+            <div class="pb-2">
+              <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+                <div class="cs-image-inner filter d-flex align-items-center mx-auto mb-4" style="max-width: 180px; height: 180px; filter: grayscale(1); overflow: visible;">
+                  <img src=".././../../assets/img/LAPROFF2.png" alt="Category image">
+                </div>
+                
+              </a>
+            </div>
+
+            
+
+            <!-- Category -->
+            <div class="pb-2">
+              <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+                <div class="cs-image-inner filter d-flex justify-content-center align-items-center mx-auto mb-4" style="max-width: 180px; height: 180px; filter: grayscale(1);">
+                  <img src=".././../../assets/img/tridex-farmaceutico-sa-6213F92B5766F985thumbnail.png" alt="Category image" class="w-75">
+                </div>
+                
+              </a>
+            </div>
+
+            <!-- Category -->
+            <div class="pb-2">
+              <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+                <div class="cs-image-inner filter d-flex align-items-center mx-auto mb-4" style="max-width: 180px; height: 180px; filter: grayscale(1);">
+                  <img src=".././../../assets/img/descarga.png" alt="Category image">
+                </div>
+                
+              </a>
+            </div>
+
+            <!-- Category -->
+            <div class="pb-2">
+              <a href="shop-catalog.html" class="d-block cs-image-scale cs-heading-highlight text-center">
+                <div class="cs-image-inner filter d-flex justify-content-center  align-items-center mx-auto mb-4" style="max-width: 180px; height: 180px; filter: grayscale(1);">
+                  <img src=".././../../assets/img/2021-03-25.png" alt="Category image" class="w-75">
+                </div>
+                
+              </a>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Mobile app CTA -->
+    <section class="bg-dark mb-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-5">
+              <img src="../../assets/img/ecommerce/home/mobile-app-illustration.png" class="d-block mx-auto my-4 mb-lg-0 mt-lg-n4" width="498" alt="Illustartion">
+            </div>
+            <div class="col-md-7 col-lg-6 pt-3 pb-5 pt-md-5 pb-md-4 ml-auto">
+              <h2 class="text-light text-center text-md-left pb-3">¡Disfruta de las compras móviles con nuestra app Distripharmacias Store!</h2>
+              <div class="d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-md-start">
+                <a href="#" class="btn-market btn-apple mb-3 mx-2 ml-md-0 mr-md-3" role="button">
+                  <span class="btn-market-subtitle">Descargar en</span>
+                  <span class="btn-market-title">App Store</span>
+                </a>
+                <a href="#" class="btn-market btn-google mb-3 mx-2 mx-md-0" role="button">
+                  <span class="btn-market-subtitle">Descargar en</span>
+                  <span class="btn-market-title">Google Play</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="container mb-5 pt-5 pb-2 pb-sm-5 py-md-5 py-lg-6">
+        <div class="row py-3">
+          <div class="col-sm-6 col-md-3 text-center mb-md-0 mb-4 pb-md-0 pb-3">
+            <img class="mb-4 text-primary" src="../../assets/img/ecommerce/home/services/delivery.svg" width="48" alt="Worldwide Shipping">
+            <h5 class="h5 mb-2">Envíos nacionales</h5>
+            
+          </div>
+          <span class="divider-vertical d-sm-block d-none"></span>
+          <div class="col-sm-6 col-md-3 text-center mb-md-0 mb-4 pb-md-0 pb-3">
+            <img class="mb-4" src="../../assets/img/ecommerce/home/services/support.svg" width="48" alt="Customer Support">
+            <h5 class="h5 mb-2">Atención al cliente</h5>
+            
+          </div>
+          <span class="divider-vertical d-sm-block d-none"></span>
+          <div class="col-sm-6 col-md-3 text-center mb-md-0 mb-4 pb-md-0 pb-3">
+            <img class="mb-4" src="../../assets/img/ecommerce/home/services/guarantee.svg" width="48" alt="Customer Support">
+            <h5 class="h5 mb-2">Garantía de devolución</h5>
+            
+          </div>
+          <span class="divider-vertical d-sm-block d-none"></span>
+          <div class="col-sm-6 col-md-3 text-center mb-md-0 mb-4 pb-md-0 pb-3">
+            <img class="mb-4" src="../../assets/img/ecommerce/home/services/payment.svg" width="48" alt="Customer Support">
+            <h5 class="h5 mb-2">Pago seguro en línea</h5>
+            
+          </div>
+        </div>
+    </section>
+
+
+    <!-- Insagram -->
+    <section class="pt-5 pb-4 pt-lg-6 pb-lg-5 border-top border-bottom">
+        <div class="container pt-md-4 pb-2 pt-lg-0 pb-lg-0">
+          <div class="row">
+            <div class="col-md-4 text-center text-md-left pb-2 pb-md-0 mb-4 mb-md-0">
+              <p class="text-dark text-uppercase mb-2">Síguenos en Instagram</p>
+              <h2 class="h1 pb-2 pb-md-3">@distripharmacias</h2>
+              <a href="#" class="btn btn-outline-primary btn-lg">
+                <i class="cxi-instagram font-size-lg mr-1"></i>
+                Instagram
+              </a>
+            </div>
+            <div class="col-md-8">
+              <div class="cs-carousel cs-nav-outside">
+                <div class="cs-carousel-inner cs-carousel-inner-six" data-carousel-options='{
+                  
+                }'>
+                  <!-- Image -->
+                  <div>
+                    <img src="../../../assets/img/2022-09-30.jpg" alt="Image" style="object-fit: cover; width: 300px; height: 200px; border-radius: 10px;">
+                  </div>
+                  <!-- Image -->
+                  <div>
+                    <img src="../../../assets/img/2022-09-24.jpg" alt="Image" style="object-fit: cover; width: 300px; height: 200px; border-radius: 10px;">
+                  </div>
+                  <!-- Image -->
+                  <div>
+                    <img src="../../../assets/img/WhatsApp Image 2022-12-21 at 11.21.50.jpeg" alt="Image" style="object-fit: cover; width: 300px; height: 200px; border-radius: 10px;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</main>
+
 <app-footer></app-footer>

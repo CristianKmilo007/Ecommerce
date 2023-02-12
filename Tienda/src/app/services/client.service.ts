@@ -14,6 +14,8 @@ export class ClientService {
   public URI_CONFIG_BACKEND
   public URI_PRODUCT_BACKEND
   public URI_CART_BACKEND
+  public URI_SALE_BACKEND
+  public URI_DISCOUNT_BACKEND
 
   constructor(
     private _http: HttpClient
@@ -22,6 +24,8 @@ export class ClientService {
     this.URI_CONFIG_BACKEND = GLOBAL.uriConfig
     this.URI_PRODUCT_BACKEND = GLOBAL.uriProduct
     this.URI_CART_BACKEND = GLOBAL.uriCart
+    this.URI_SALE_BACKEND = GLOBAL.uriSale
+    this.URI_DISCOUNT_BACKEND = GLOBAL.uriDiscount
   }
 
   loginClient(data:any):Observable<any>{
@@ -130,6 +134,34 @@ export class ClientService {
   getshipping():Observable<any>{
     return this._http.get('./assets/envios.json')
   }
+
+  registerBuy_client(data:any, token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'authorization':token})
+    return this._http.post(`${this.URI_SALE_BACKEND}/registerBuy_client`, data, {headers:headers})
+  }
+
+  getDiscount_Active():Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json'})
+    return this._http.get(`${this.URI_DISCOUNT_BACKEND}/getDiscount_Active`, {headers:headers})
+  }
+
+  listProducts_newsPublic():Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    return this._http.get(`${this.URI_PRODUCT_BACKEND}/listProducts_newsPublic`, {headers:headers})
+  }
+
+  listProducts_mostSelledPublic():Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    return this._http.get(`${this.URI_PRODUCT_BACKEND}/listProducts_mostSelledPublic`, {headers:headers})
+  }
+
+  
+
+  
+
+  
+
+
 
 
 

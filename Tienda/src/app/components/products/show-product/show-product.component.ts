@@ -22,6 +22,7 @@ export class ShowProductComponent implements OnInit {
     variety: '',
     stock: 2
   }
+  public discount_active : any = undefined
 
   public token : any
 
@@ -111,6 +112,19 @@ export class ShowProductComponent implements OnInit {
         }
       });
     }, 500)
+
+    this._clientService.getDiscount_Active().subscribe(
+      response => {
+
+        if(response.data != undefined){
+          this.discount_active = response.data[0]
+          console.log(this.discount_active);
+        }else{
+          this.discount_active = undefined
+        }
+        
+      }
+    )
   
   }
 

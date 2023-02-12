@@ -29,6 +29,9 @@ import { EditCouponComponent } from './components/coupons/edit-coupon/edit-coupo
 import { ConfigComponent } from './components/config/config.component';
 import { VarietyProductsComponent } from './components/products/variety-products/variety-products.component';
 import { GaleryProductsComponent } from './components/products/galery-products/galery-products.component';
+import { CreateDiscountComponent } from './components/discounts/create-discount/create-discount.component';
+import { EditDiscountComponent } from './components/discounts/edit-discount/edit-discount.component';
+import { IndexDiscountComponent } from './components/discounts/index-discount/index-discount.component';
 
 
 @NgModule({
@@ -50,7 +53,10 @@ import { GaleryProductsComponent } from './components/products/galery-products/g
     EditCouponComponent,
     ConfigComponent,
     VarietyProductsComponent,
-    GaleryProductsComponent
+    GaleryProductsComponent,
+    CreateDiscountComponent,
+    EditDiscountComponent,
+    IndexDiscountComponent
   ],
   imports: [
     BrowserModule,
