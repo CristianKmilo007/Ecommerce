@@ -21,7 +21,7 @@ export class IndexClientComponent implements OnInit {
   public filterEstablishment = ''
 
   public page = 1
-  public pageSize = 5
+  public pageSize = 25
 
   public token : any 
 

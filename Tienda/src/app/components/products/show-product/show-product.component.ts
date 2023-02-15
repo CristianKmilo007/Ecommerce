@@ -20,7 +20,7 @@ export class ShowProductComponent implements OnInit {
   public product_rec : Array<any> = []
   public cart_data : any = {
     variety: '',
-    stock: 2
+    stock: 1
   }
   public discount_active : any = undefined
 
@@ -88,8 +88,8 @@ export class ShowProductComponent implements OnInit {
         controlsPosition: "top",
         mouseDrag: !0,
         speed: 600,
-        autoplayHoverPause: !0,
-        autoplayButtonOutput: !1,
+        autoplay: true,
+        autoplayButtonOutput: false,
         nav: false,
         controlsContainer: "#custom-controls-related",
         responsive: {
@@ -106,7 +106,7 @@ export class ShowProductComponent implements OnInit {
             gutter: 24
           },
           1100: {
-            items: 4,
+            items: 5,
             gutter: 30
           }
         }

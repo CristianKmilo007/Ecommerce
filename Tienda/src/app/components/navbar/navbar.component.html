@@ -3,16 +3,16 @@
   
     <!-- Navbar -->
     <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
-    <div class="navbar navbar-expand-lg navbar-light bg-secondary navbar-sticky" data-fixed-element>
+    <div class="navbar navbar-expand-lg navbar-dark bg-primary navbar-sticky" data-fixed-element>
       <div class="container px-0" style="max-width: 1350px" >
         <a href="index.html" class="navbar-brand order-lg-1 mr-0 pr-lg-3 mr-lg-4">
-          <img src="../../../assets/img/Logo_DP.png" alt="Createx Logo" width="130">
+          <img src="../../../assets/img/Logo_DP4.png" alt="Createx Logo" width="130">
         </a>
         <!-- Search desktop -->
         <div class="input-group-overlay ml-4 d-lg-block d-none order-lg-3" style="max-width: 21rem;">
-          <input class="form-control appended-form-control" type="text" placeholder="Buscar productos..." name="filter_product" [(ngModel)]="filter_product" (keyup)="search_product()">
+          <input class="form-control appended-form-control imp_bg text-white" type="text" placeholder="Buscar productos..." name="filter_product" [(ngModel)]="filter_product" (keyup)="search_product()">
           <div class="input-group-append-overlay">
-            <span class="input-group-text"><i class="cxi-search lead align-middle"></i></span>
+            <span class="input-group-text"><i class="cxi-search lead align-middle text-white-50"></i></span>
           </div>
         </div>
         <!-- Toolbar -->
@@ -100,7 +100,7 @@
                 <li><a [routerLink]="['/products']" class="dropdown-item">Fitoterapeuticos</a></li>
                 <li><a [routerLink]="['/products']" class="dropdown-item">Cosmeticos</a></li>
                 <li><a [routerLink]="['/products']" class="dropdown-item">Droga blanca</a></li>
-                <li><a [routerLink]="['/products']" class="dropdown-item">Reactivos de diagnostico</a></li>
+                <li><a [routerLink]="['/products']" class="dropdown-item">Dispositivos medicos</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -151,7 +151,7 @@
                 <li class="mb-0"><span class="text-muted">{{item.product.titleVariety}}:</span> {{item.variety}}</li>
               </ul>
               <div class="d-flex align-items-center">
-                <input type="number" class="form-control form-control-sm bg-light mr-3" readonly style="width: 4.5rem;" value="{{item.stock}}">
+                <input type="number" class="form-control form-control-sm bg-light mr-3" readonly style="width: 2.5rem;" value="{{item.stock}}">
                 <div class="text-nowrap" *ngIf="discount_active == undefined"><strong class="text-danger">$ {{item.product.price | discount: discount_active.discount}} </strong></div>
                 <div class="text-nowrap" *ngIf="discount_active != undefined" ><strong class="text-danger">$ {{item.product.price | discount: discount_active.discount}} </strong> <s class="font-size-xs ml-1 text-muted">${{item.product.price}}</s></div>
               </div>

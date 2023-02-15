@@ -76,7 +76,7 @@
                   <i class="sr-star cxi-star-filled active"></i>
                   <i class="sr-star cxi-star"></i>
                 </div>
-                <span class="font-size-sm text-muted">12 reviews</span>
+                <span class="font-size-sm text-muted">12 reseñas</span>
               </div>
             </div>
 
@@ -127,10 +127,10 @@
               <div class="col-lg-2 col-4 order-lg-3 order-3">
                 <div class="form-group">
                   <select class="form-control custom-select" id="select-input" name="stock" [(ngModel)]="cart_data.stock" >
+                    <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="5">5</option>
                     <option value="10">10</option>
-                    <option value="28">28</option>
                   </select>
                 </div>
               </div>
@@ -160,19 +160,20 @@
               <div class="card border-bottom">
                 <div class="card-header" id="delivery-card">
                   <h6 class="accordion-heading">
-                    <a href="#delivery" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="delivery">Entregas
+                    <a href="#delivery" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="delivery">Descripcion 
                       <span class="accordion-indicator"></span>
                     </a>
                   </h6>
                 </div>
                 <div class="collapse" id="delivery" aria-labelledby="delivery-card" data-parent="#productTerms">
-                  <div class="card-body">
+                  <div class="card-body pb-0">
                     <p class="font-size-sm">
-                      Free standard shipping on orders <strong>over $35</strong> before tax, plus free returns.
+                      {{product.description}}
                     </p>
+                    
 
                     <!-- Delivery table -->
-                    <div class="table-responsive px-md-3">
+                    <!-- <div class="table-responsive px-md-3">
                       <table class="table mb-0" style="min-width: 450px;">
                         <thead class="font-size-xs text-uppercase text-muted">
                           <tr>
@@ -199,7 +200,7 @@
                           </tr>
                         </tbody>
                       </table>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -208,22 +209,28 @@
               <div class="card border-bottom">
                 <div class="card-header" id="return-card">
                   <h6 class="accordion-heading">
-                    <a class="collapsed" href="#return" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="return">Devoluciones
+                    <a class="collapsed" href="#return" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="return">Entregas y devoluciones
                       <span class="accordion-indicator"></span>
                     </a>
                   </h6>
                 </div>
                 <div class="collapse" id="return" aria-labelledby="return-card" data-parent="#productTerms">
-                  <p class="font-size-sm">
-                    You have <strong>60 days</strong> to return the item(s) using any of the following methods:
-                  </p>
                   <ul class="mb-4 pl-3">
-                    <li>Free store return</li>
-                    <li>Free returns via USPS Dropoff Service</li>
+                    <li>
+                      <p class="font-size-sm mb-2">
+                        Envio estandar gratuito en pedidos <strong>superiores a $100.000</strong>.
+                      </p>
+                    </li>
+                    <li>
+                      <p class="font-size-sm">
+                        No se reciben medicamentos con menos de<strong>3 meses</strong> de vencimiento, devoluciones sin costo.
+                      </p>
+                    </li>
                   </ul>
+                  
                 </div>
               </div>
-            </div>
+            </div> 
 
             <!-- Share -->
             <div class="mb-5 text-nowrap">
@@ -232,11 +239,9 @@
                 <i class="cxi-facebook"></i>
               </a>
               <a href="#" class="social-btn sb-solid align-middle mr-2" data-toggle="tooltip" title="Twitter">
-                <i class="cxi-twitter"></i>
+                <i class="cxi-instagram"></i>
               </a>
-              <a href="#" class="social-btn sb-solid align-middle" data-toggle="tooltip" title="Pinterest">
-                <i class="cxi-pinterest"></i>
-              </a>
+
             </div>
 
             <!-- Payment -->
@@ -255,111 +260,7 @@
         </div>
       </section>
 
-      <div class="py-5" style="background-color: #e5e8ed;">
-        <section  class="container my-lg-2 py-2 py-md-4" >
-          <div class="row">
-            <div class="col-lg-7 col-md-8 mb-md-0 mb-4">
-              <h3 class="h5 mb-3">Details</h3>
-              <p>Id habitant tempor aliquam vulputate enim velit tincidunt sed. Urna sed facilisis nulla feugiat amet venenatis. Id suspendisse ut quis tellus aliquam pellentesque neque, semper donec.</p>
-              <ul class="pl-3">
-                <li>Brand: Jordan</li>
-                <li>Color: gray / red / yellow</li>
-                <li>Mid-cut design</li>
-                <li>Lace-up fastening</li>
-                <li>Rubber outsole pods for durability and traction</li>
-                <li>Moulded grooves in forefoot offer added flexibility</li>
-                <li>Padded cuff with inner nodes designed to offer comfort and support around the Achilles tendon</li>
-              </ul>
-              <hr class="my-4">
-              <h3 class="h5 mb-3">Fabric</h3>
-              <ul class="pl-3">
-                <li>Upper: 50% real leather, 50% textile</li>
-                <li>Lining: 100% textile</li>
-                <li>Sole: 100% other materials</li>
-              </ul>
-              <hr class="my-4">
-              <h3 class="h5 mb-3">Care</h3>
-              <ul class="pl-0">
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/hand-wash.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    Hand wash only (30°)
-                  </div>
-                </li>
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/no-ironing.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    No ironing
-                  </div>
-                </li>
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/no-bleach.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    Do not use any bleach
-                  </div>
-                </li>
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/no-tumble-dry.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    Do not tumble dry
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4 offset-lg-1">
-  
-              <!-- Product card carousel -->
-              <div class="card card-product">
-                <div class="card-product-img">
-                  <div class=" cs-controls-onhover">
-                    <a class="cs-carousel-inner">
-                      <div>
-                        <img style="background-color: white;" class="card-img-top" [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+product.image" alt="Product image">
-                      </div>
-                     
-                    </a>
-                  </div>
-                  <div class="card-product-widgets-top">
-                    <span *ngIf="discount_active" class="badge product-badge badge-danger" >-{{discount_active.discount}}%</span>
-                    <div class="ml-auto star-rating">
-                      <i class="sr-star cxi-star-filled active"></i>
-                      <i class="sr-star cxi-star-filled active"></i>
-                      <i class="sr-star cxi-star-filled active"></i>
-                      <i class="sr-star cxi-star-filled active"></i>
-                      <i class="sr-star cxi-star"></i>
-                    </div>
-                  </div>
-                  <div class="card-product-widgets-bottom">
-                    <a class="btn-wishlist ml-auto" href="#" data-toggle="tooltip" data-placement="left" title="Add to wishlist"></a>
-                  </div>
-                </div>
-                <div class="card-body" style="background-color: white;">
-                  <h3 class="card-product-title text-truncate mb-2">
-                    <a href="#" class="nav-link">{{product.title}}</a>
-                  </h3>
 
-                  <div class="d-flex align-items-center mb-3" *ngIf="discount_active != undefined">
-                    <span class="h5 d-inline-block mb-0 text-danger" *ngIf="discount_active" >$ {{product.price | discount: discount_active.discount }}</span>
-                    <del class="d-inline-block ml-2 pl-1 text-muted">$ {{product.price}}</del>
-                    
-                  </div>
-    
-                  <div class="d-flex align-items-center mb-3" *ngIf="discount_active == undefined">
-                    <span class="h3 d-inline-block mb-0 text-danger">$ {{product.price}}</span>
-                  </div>
-                  <button type="button" class="btn btn-primary btn-block">
-                    <i class="cxi-cart align-middle mt-n1 mr-2"></i>
-                    Agregar al carrito
-                  </button>
-                </div>
-                <div class="card-footer">
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
 
       <section class="container py-md-6 py-5 mb-2">
         <div class="row">
@@ -368,7 +269,7 @@
 
               <!-- Rating -->
               <div class="col-sm-5 mb-sm-0 mb-4">
-                <h3 class="h2 mb-3 pb-1">12 reviews</h3>
+                <h3 class="h2 mb-3 pb-1">12 reseñas</h3>
                 <div class="star-rating mb-3 pb-1">
                   <i class="sr-star cxi-star-filled active"></i>
                   <i class="sr-star cxi-star-filled active"></i>
@@ -377,8 +278,8 @@
                   <i class="sr-star cxi-star"></i>
                 </div>
                 <span class="font-size-sm text-muted">
-                  9 out of 12 (75%) <br>
-                  Customers recommended this product
+                  9 de 12 (75%) <br>
+                  clientes recomendaron este producto
                 </span>
               </div>
 
@@ -459,14 +360,15 @@
 
             <!-- Button + sorting -->
             <div class="d-flex align-items-center justify-content-between mb-4 pb-2 pb-sm-4">
-              <a href="#modal-review" data-toggle="modal" class="btn btn-primary">Leave a review</a>
+              <a href="#modal-review" data-toggle="modal" class="btn btn-primary">Dejar un comentario</a>
               <div class="form-inline">
-                <label for="sort-orders" class="d-none d-sm-block font-weight-bold mr-2 pr-1">Sort by</label>
+                <label for="sort-orders" class="d-none d-sm-block font-weight-bold mr-2 pr-1">
+                  Ordenar por</label>
                 <select id="sort-orders" class="custom-select">
-                  <option>Newest</option>
-                  <option>Oldest</option>
-                  <option>High rating</option>
-                  <option>Low rating</option>
+                  <option>Más reciente</option>
+                  <option>Más antiguo</option>
+                  <option>Valoración alta</option>
+                  <option>Valoración baja</option>
                 </select>
               </div>
             </div>
@@ -476,7 +378,7 @@
               <div class="row">
                 <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
                   <h3 class="mb-2 font-size-lg">Devon Lane</h3>
-                  <span class="d-block mb-3 font-size-sm text-muted">3 days ago</span>
+                  <span class="d-block mb-3 font-size-sm text-muted">Hace 3 días</span>
                   <div class="mt-n1 star-rating">
                     <i class="sr-star cxi-star-filled active"></i>
                     <i class="sr-star cxi-star-filled active"></i>
@@ -506,7 +408,7 @@
               <div class="row">
                 <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
                   <h3 class="mb-2 font-size-lg">Annette Black</h3>
-                  <span class="d-block mb-3 font-size-sm text-muted">November 29, 2020</span>
+                  <span class="d-block mb-3 font-size-sm text-muted">Nobiembre 29, 2020</span>
                   <div class="mt-n1 star-rating">
                     <i class="sr-star cxi-star-filled active"></i>
                     <i class="sr-star cxi-star-filled active"></i>
@@ -536,7 +438,7 @@
               <div class="row">
                 <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
                   <h3 class="mb-2 font-size-lg">Albert Flores</h3>
-                  <span class="d-block mb-3 font-size-sm text-muted">November 5, 2020</span>
+                  <span class="d-block mb-3 font-size-sm text-muted">Nobiembre 5, 2020</span>
                   <div class="mt-n1 star-rating">
                     <i class="sr-star cxi-star-filled active"></i>
                     <i class="sr-star cxi-star-filled active"></i>
@@ -566,7 +468,7 @@
               <div class="row">
                 <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
                   <h3 class="mb-2 font-size-lg">Marvin McKinney</h3>
-                  <span class="d-block mb-3 font-size-sm text-muted">October 13, 2020</span>
+                  <span class="d-block mb-3 font-size-sm text-muted">Octubre 13, 2020</span>
                   <div class="mt-n1 star-rating">
                     <i class="sr-star cxi-star-filled active"></i>
                     <i class="sr-star cxi-star-filled active"></i>
@@ -693,8 +595,17 @@
                 <div class=" card card-product mx-auto" style="cursor: pointer;">
                   <div class="card-product-img " >
                     <a [routerLink]="['/products/', item.slug]" target="_blank" class="card-img-top" >
-                      <div class="bg-white p-3 d-flex justify-content-center align-items-center" style="height: 260px;">
+                      <div class="bg-white p-3 d-flex justify-content-center align-items-center scale" style="height: 220px; border-radius: 10px ;">
                         <img class="bg-white" [src]="URI_PRODUCT_BACKEND+'/getFrontPage/'+item.image" alt="Product image">
+                        <div class="card-product-widgets-top">
+                          <div class="star-rating ml-auto">
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                            <i class="sr-star cxi-star-filled active"></i>
+                          </div>
+                        </div>
                       </div>
                       
                     </a>

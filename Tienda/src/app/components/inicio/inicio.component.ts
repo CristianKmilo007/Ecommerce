@@ -95,6 +95,7 @@ export class InicioComponent implements OnInit {
         container: '.cs-carousel-inner-three',
         autoplay: true,
         autoplayButtonOutput: false,
+        speed: 600,
         controls: false,
         mouseDrag: !0,
         responsive: {
@@ -137,6 +138,7 @@ export class InicioComponent implements OnInit {
         autoplay: true,
         autoplayButtonOutput: false,
         autoplayTimeout: 5000,
+        speed: 600,
         controlsText: ['<i class="cxi-arrow-left"></i>', '<i class="cxi-arrow-right"></i>'],
         controlsContainer:'#custom-controls-trending',
         responsive: {

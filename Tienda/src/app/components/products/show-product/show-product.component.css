@@ -1,0 +1,6 @@
+img{
+    transition: all 300ms;
+}
+.card-product:hover >.card-product-img > a > .scale > img{
+    transform: scale(1.08);
+}

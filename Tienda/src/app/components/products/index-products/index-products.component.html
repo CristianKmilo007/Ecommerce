@@ -50,7 +50,7 @@
                 <label for="pager-top" class="font-weight-bold text-nowrap mr-2 pr-1 d-none d-lg-block">Ver</label>
                 <select id="pager-top" class="custom-select" name="pageSize" [(ngModel)]="pageSize" >
                   <option value="15">15</option>
-                  <option value="30">30</option>
+                  <option value="32">32</option>
                   <option value="45">45</option>
                 </select>
                 <span class="font-size-sm text-muted text-nowrap ml-2 d-none d-lg-block">productos por pagina</span>
@@ -254,7 +254,7 @@
                     </div>
                     <div class="card-body px-0">
                       <h3 class="card-product-title  mb-3">
-                        <a [routerLink]="['/products/', item.slug]" class="nav-link" style="font-size: 18px;">{{item.title}}</a>
+                        <a [routerLink]="['/products/', item.slug]" class="nav-link" style="font-size: 17px;">{{item.title}}</a>
                       </h3>
                       <div class="d-flex align-items-center" *ngIf="discount_active == undefined">
                         <span class="h6 d-inline-block mb-0" style="color: #EC4A41;">$ {{item.price}}</span>
@@ -306,7 +306,7 @@
                 <label for="pager-bottom" class="font-weight-bold text-nowrap mr-2 pr-1 d-none d-md-block">Ver</label>
                 <select id="pager-bottom" class="custom-select" name="pageSize" [(ngModel)]="pageSize">
                   <option value="15">15</option>
-                  <option value="30">30</option>
+                  <option value="32">32</option>
                   <option value="45">45</option>
                 </select>
                 <span class="font-size-sm text-muted text-nowrap ml-2 d-none d-md-block">productos por pagina</span>

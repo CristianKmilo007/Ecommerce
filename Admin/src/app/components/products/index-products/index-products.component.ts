@@ -25,7 +25,7 @@ export class IndexProductsComponent implements OnInit {
   public filterLaboratory = ''
 
   public page = 1
-  public pageSize = 5
+  public pageSize = 25
 
   public token : any
 

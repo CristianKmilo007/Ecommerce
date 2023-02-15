@@ -44,7 +44,7 @@ const listProducts_filterAdmin = async (req, res) => {
             let filter = req.params['filter']
 
             if(type == null || type == 'null'){
-                let register = await Product.find()
+                let register = await Product.find().sort({createdAt: -1})
                 res.status(200).send({data:register})
             }else{
                 if(type == 'title'){
